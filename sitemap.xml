@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="sitemap.xsl"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:xhtml="http://www.w3.org/1999/xhtml"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<url>
+    <loc>https://www.sarathihotel.com/</loc>
+    <lastmod>2026-03-17T10:27:02+05:45</lastmod>
+    <priority>1</priority>
+</url>
+
+        <url>
+            <loc>https://www.sarathihotel.com/home</loc>
+            <lastmod>2026-03-17T10:27:02+05:45</lastmod>
+            <priority>0.9</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/contact-us</loc>
+            <lastmod>2026-03-17T10:27:02+05:45</lastmod>
+            <priority>0.9</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/services-list</loc>
+            <lastmod>2026-03-17T10:27:02+05:45</lastmod>
+            <priority>0.9</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/gallery-list</loc>
+            <lastmod>2026-03-17T10:27:02+05:45</lastmod>
+            <priority>0.9</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/hall</loc>
+            <lastmod>2023-09-20T17:21:04+05:45</lastmod>
+            <priority>0.8</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/dining</loc>
+            <lastmod>2016-11-16T12:51:44+05:45</lastmod>
+            <priority>0.8</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/accommodation</loc>
+            <lastmod>2016-11-16T11:45:55+05:45</lastmod>
+            <priority>0.8</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/bhrikuti-hall</loc>
+            <lastmod>2023-09-20T17:25:13+05:45</lastmod>
+            <priority>0.85</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/araniko-hall</loc>
+            <lastmod>2023-09-20T17:22:16+05:45</lastmod>
+            <priority>0.85</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/junior-suite-room</loc>
+            <lastmod>2016-11-16T12:29:13+05:45</lastmod>
+            <priority>0.85</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/sarathi-events</loc>
+            <lastmod>2024-05-14T19:10:13+05:45</lastmod>
+            <priority>0.85</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/premium-deluxe-room</loc>
+            <lastmod>2016-11-16T12:32:47+05:45</lastmod>
+            <priority>0.85</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/deluxe-room</loc>
+            <lastmod>2023-09-20T15:25:13+05:45</lastmod>
+            <priority>0.85</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/haveli-restaurant</loc>
+            <lastmod>2016-11-16T12:57:55+05:45</lastmod>
+            <priority>0.85</priority>
+        </url>
+    
+        <url>
+            <loc>https://www.sarathihotel.com/bentil-bar</loc>
+            <lastmod>2016-11-16T13:00:47+05:45</lastmod>
+            <priority>0.85</priority>
+        </url>
+    </urlset>

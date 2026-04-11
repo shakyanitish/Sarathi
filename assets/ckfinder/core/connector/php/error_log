@@ -1,0 +1,73 @@
+[21-Sep-2023 06:56:28 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[09-Oct-2023 12:06:01 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[09-Oct-2023 12:06:01 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[09-Oct-2023 12:06:01 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[09-Oct-2023 12:06:01 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[09-Oct-2023 12:06:10 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[10-Oct-2023 06:20:04 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[10-Oct-2023 06:24:21 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[10-Oct-2023 06:33:37 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[11-Oct-2023 05:56:37 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[11-Oct-2023 06:59:09 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[11-Oct-2023 12:03:06 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/yetiserver/public_html/sarathi/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[13-Oct-2023 06:54:47 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Utils/Misc.php on line 202
+[13-Oct-2023 06:54:47 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Utils/Misc.php on line 202
+[13-Oct-2023 06:54:47 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Utils/Misc.php on line 202
+[13-Oct-2023 06:54:47 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function each() in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php:438
+Stack trace:
+#0 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/CommandHandler/Init.php(144): CKFinder_Connector_Core_Config->getResourceTypeConfig('Images')
+#1 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/CommandHandler/XmlCommandHandlerBase.php(82): CKFinder_Connector_CommandHandler_Init->buildXml()
+#2 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Connector.php(100): CKFinder_Connector_CommandHandler_XmlCommandHandlerBase->sendResponse()
+#3 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/connector.php(101): CKFinder_Connector_Core_Connector->executeCommand('Init')
+#4 {main}
+  thrown in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[17-Oct-2023 01:35:11 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function each() in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php:438
+Stack trace:
+#0 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/FolderHandler.php(132): CKFinder_Connector_Core_Config->getResourceTypeConfig('Images')
+#1 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/FolderHandler.php(175): CKFinder_Connector_Core_FolderHandler->getResourceTypeConfig()
+#2 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/CommandHandler/QuickUpload.php(46): CKFinder_Connector_Core_FolderHandler->getUrl()
+#3 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Connector.php(78): CKFinder_Connector_CommandHandler_QuickUpload->sendResponse()
+#4 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/connector.php(101): CKFinder_Connector_Core_Connector->executeCommand('QuickUpload')
+#5 {main}
+  thrown in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[17-Oct-2023 01:37:00 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function each() in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php:438
+Stack trace:
+#0 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/FolderHandler.php(132): CKFinder_Connector_Core_Config->getResourceTypeConfig('Images')
+#1 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/FolderHandler.php(175): CKFinder_Connector_Core_FolderHandler->getResourceTypeConfig()
+#2 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/CommandHandler/QuickUpload.php(46): CKFinder_Connector_Core_FolderHandler->getUrl()
+#3 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Connector.php(78): CKFinder_Connector_CommandHandler_QuickUpload->sendResponse()
+#4 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/connector.php(101): CKFinder_Connector_Core_Connector->executeCommand('QuickUpload')
+#5 {main}
+  thrown in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[17-Oct-2023 01:39:33 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Utils/Misc.php on line 202
+[17-Oct-2023 01:39:33 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Utils/Misc.php on line 202
+[17-Oct-2023 01:39:33 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Utils/Misc.php on line 202
+[17-Oct-2023 01:39:33 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function each() in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php:438
+Stack trace:
+#0 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/CommandHandler/Init.php(144): CKFinder_Connector_Core_Config->getResourceTypeConfig('Images')
+#1 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/CommandHandler/XmlCommandHandlerBase.php(82): CKFinder_Connector_CommandHandler_Init->buildXml()
+#2 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Connector.php(100): CKFinder_Connector_CommandHandler_XmlCommandHandlerBase->sendResponse()
+#3 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/connector.php(101): CKFinder_Connector_Core_Connector->executeCommand('Init')
+#4 {main}
+  thrown in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[17-Oct-2023 01:42:31 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function each() in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php:438
+Stack trace:
+#0 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/FolderHandler.php(132): CKFinder_Connector_Core_Config->getResourceTypeConfig('Images')
+#1 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/FolderHandler.php(175): CKFinder_Connector_Core_FolderHandler->getResourceTypeConfig()
+#2 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/CommandHandler/QuickUpload.php(46): CKFinder_Connector_Core_FolderHandler->getUrl()
+#3 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Connector.php(78): CKFinder_Connector_CommandHandler_QuickUpload->sendResponse()
+#4 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/connector.php(101): CKFinder_Connector_Core_Connector->executeCommand('QuickUpload')
+#5 {main}
+  thrown in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[17-Oct-2023 01:44:18 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Utils/Misc.php on line 202
+[17-Oct-2023 01:44:18 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Utils/Misc.php on line 202
+[17-Oct-2023 01:44:18 America/Chicago] PHP Warning:  A non-numeric value encountered in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Utils/Misc.php on line 202
+[17-Oct-2023 01:44:18 America/Chicago] PHP Fatal error:  Uncaught Error: Call to undefined function each() in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php:438
+Stack trace:
+#0 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/CommandHandler/Init.php(144): CKFinder_Connector_Core_Config->getResourceTypeConfig('Images')
+#1 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/CommandHandler/XmlCommandHandlerBase.php(82): CKFinder_Connector_CommandHandler_Init->buildXml()
+#2 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Connector.php(100): CKFinder_Connector_CommandHandler_XmlCommandHandlerBase->sendResponse()
+#3 /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/connector.php(101): CKFinder_Connector_Core_Connector->executeCommand('Init')
+#4 {main}
+  thrown in /home1/ycafeslx/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438
+[03-Sep-2024 06:23:43 UTC] PHP Deprecated:  The each() function is deprecated. This message will be suppressed on further calls in /home/acehotel/sarathihotel.com/assets/ckfinder/core/connector/php/php5/Core/Config.php on line 438

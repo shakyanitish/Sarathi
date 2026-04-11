@@ -1,0 +1,50 @@
+#block-search,
+#block-search * {
+    box-sizing: border-box;
+}
+
+#block-search {
+    background: #f3f0ed;
+    position: sticky;
+    bottom: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.be-container {
+    max-width: 1360px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+#be-booking-form {
+    width: 100%;
+    max-width: 1440px;
+    margin: 50px auto;
+}
+
+#tl-booking-cart {
+    z-index: 1 !important;
+}
+
+body {
+    margin: 0 !important;
+}
+
+.be-booking-page .header-social {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.be-btn {
+    display: table;
+    margin: auto;
+}

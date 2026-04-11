@@ -1,0 +1,82 @@
+<!doctype html>
+<html>
+<head>
+    <!-- Meta tags -->
+    <jcms:site:seotitle/>
+    <!-- Fevicon -->
+    <jcms:site:fevicon/>
+
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="min.css" />
+    <link rel="stylesheet" href="../../css/be-styles.css" />
+    <!-- start head script -->
+    <script type="text/javascript" src="../../js/be-script.js"></script>
+    <!-- end head script -->
+</head>
+
+<body class="contact">
+    <div class="container">
+
+        <!-- Navigation | START -->
+        <header>
+            <div class="center">
+                <!-- Logo -->
+                <jcms:site:logo/>
+
+                <!-- Menu module -->
+                <jcms:module:menu/>
+
+                <!-- Social module -->
+                <jcms:module:socilaLinktop/>
+
+            </div>
+        </header>
+        <!-- Navigation | END -->
+
+        <jcms:module:conatact-us1/>
+
+        <!-- Map & Info Section | START -->
+        <section class="contact-map-info-section">
+            <div class="center">
+                <div class="contact-map-info-row">
+                    <jcms:module:conatact-us/>
+                    <div class="contact-map-container">
+                        <jcms:module:office_map/>
+                    </div>
+                </div>
+            </div>
+        </section>
+         <!-- start Search form script -->
+        <div id="block-search">
+            <div id="be-search-form" class="be-container">
+                <a href="https://exely.com/" rel="nofollow" target="_blank">Hotel management software</a>
+            </div>
+        </div>
+        <!-- end Search form script -->
+        <!-- Static Footer -->
+        <jcms:module:footer/>
+        <script>
+            function toggleNearby(element) {
+                // Close others if open (optional, but cleaner)
+                var items = document.querySelectorAll('.nearby-item');
+                items.forEach(function(item) {
+                    if (item !== element) item.classList.remove('active');
+                });
+                element.classList.toggle('active');
+            }
+        </script>
+        <!-- Map & Info Section | END -->
+
+        
+        <!-- Removed unused sections per user request -->
+
+    </div>
+
+    <!-- Script -->
+    <script src="system/plugins.js"></script>
+    <script src="jquery.validate.js"></script>
+    <script src="script.js"></script>
+    <jcms:footer:script />
+      
+</body>
+</html>

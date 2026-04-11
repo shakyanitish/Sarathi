@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+
+<head>
+    <!-- Meta tags -->
+    <jcms:site:seotitle/>
+    <jcms:site:fevicon/>
+    <!-- start head script -->
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="min.css" />
+    <link rel="stylesheet" href="../../css/be-styles.css" />
+    <script type="text/javascript" src="../../js/be-script.js"></script>
+    <!-- end head script -->
+    <style>
+        .inquiry-form input::placeholder,
+        .inquiry-form textarea::placeholder {
+            color: #aaa !important;
+            opacity: 1;
+        }
+
+        .inquiry-form input,
+        .inquiry-form textarea {
+            color: #555 !important;
+        }
+
+        /* Make exclusive offers images responsive */
+        .inner-slider .slider .col-3 img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            /* Adds premium look */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            /* Subtle depth */
+        }
+
+        .inner-slider .slider .col-3 {
+            padding: 10px;
+            /* Spacing between images in slider */
+        }
+    </style>
+</head>
+
+<body>
+    <jcms:site:FB/>
+    <div class="container">
+
+        <!-- Navigation | START -->
+        <header>
+            <div class="center">
+                <!-- Logo -->
+                <jcms:site:logo/>
+
+                <!-- Menu module -->
+                <jcms:module:menu/>
+
+                <!-- Social module -->
+                <jcms:module:socilaLinktop/>
+
+            </div>
+        </header>
+        <!-- Navigation | END -->
+
+        <!-- header -->
+        <section class="contact-header-section">
+            <div class="center">
+                <div class="contact-title-row">
+                    <h3>Packages and Offers</h3>
+                </div>
+                <div class="contact-info-row">
+                    <div class="contact-tagline">
+                        <div class="breadcrumb-container">
+                            <ul class="breadcrumb-list">
+                                <li><a href="index.php">Home</a></li>
+                                <li>Packages and offers</li>
+                            </ul>
+                        </div>
+                        <h2>Get in Touch with Hotel Sarathi</h2>
+                    </div>
+                    <div class="contact-description">
+                        <p>Experience the perfect blend of tradition and comfort in the heart of Dhulikhel.Our team is
+                            here to assist you with your bookings, enquiries, and any special requests you may have.</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <main>
+            <div class="exclusive-offers-section">
+                <!-- Room Title Section -->
+                <div class="section text feature fade visible">
+                    <div class="center">
+                        <div class="col-1">
+                            <h3>Our Exclusive Offers</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description Section -->
+                <div class="section text fade visible">
+                    <div class="center">
+                        Experience the best of comfort at Hotel Sarathi with our Premium rooms. Designed for relaxation,
+                        these rooms come with top-quality amenities to make your stay extra special. Enjoy a luxurious
+                        experience with all the details that ensure your time here is both comfortable and relaxing.
+                    </div>
+                </div>
+
+                <!-- Image Slider Section -->
+                <jcms:module:offers-exclusive/>
+            </div>
+
+
+            <!-- special offers -->
+            <div class="section text feature fade visible" style="text-align: center; padding-top: 60px;">
+                <div class="center">
+                    <div class="col-1">
+                        <h3>Special Packages</h3>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description Section -->
+            <div class="section text fade visible" style="text-align: center; padding-bottom: 0;">
+                <div class="center" style="max-width: 900px; margin: 0 auto; line-height: 1.8; color: #555;">
+                    Experience the best of comfort at Hotel Sarathi with our Premium rooms. Designed for relaxation,
+                    these rooms come with top-quality amenities to make your stay extra special. Enjoy a luxurious
+                    experience with all the details that ensure your time here is both comfortable and relaxing.
+                </div>
+            </div>
+
+            <!-- Luxuries Timeline -->
+            <!-- Features List -->
+            <jcms:module:offers-feature-list/>
+
+
+
+        </main>
+
+        <div style="clear: both;"></div>
+
+        <!-- start Search form script -->
+        <div id="block-search">
+            <div id="be-search-form" class="be-container">
+                <a href="https://exely.com/" rel="nofollow" target="_blank">Hotel management software</a>
+            </div>
+        </div>
+        <!-- end Search form script -->
+
+        <!-- Static Footer -->
+        <jcms:module:footer/>
+    </div>
+
+
+
+
+    <!-- Script -->
+    <script src="system/plugins.js"></script>
+    <script src="script.js"></script>
+    <jcms:footer:script/>
+</body>
+
+</html>
