@@ -2,7 +2,7 @@
 class Testimonial extends DatabaseObject {
 
 	protected static $table_name = "tbl_testimonial";
-	protected static $db_fields = array('id', 'parentOf', 'name', 'content', 'status', 'sortorder', 'image', 'linksrc', 'country', 'via_type', 'type');
+	protected static $db_fields = array('id', 'parentOf', 'name', 'content', 'status', 'sortorder', 'image', 'linksrc', 'country', 'via_type', 'type', 'rating');
 	
 	public $id;
 	public $parentOf;
@@ -15,6 +15,8 @@ class Testimonial extends DatabaseObject {
 	public $country;
 	public $via_type;
 	public $type;
+
+	public $rating;
 
 
 	//GET ALL Testimonial 
@@ -229,6 +231,15 @@ class Testimonial extends DatabaseObject {
 		$sql = "SELECT * FROM ".self::$table_name." WHERE status='1'";
 		$query = $db->query($sql);
 		return $db->num_rows($query);
+	}
+
+	// get average rating of records published
+	public static function getAverageRating(){
+		global $db;
+		$sql = "SELECT AVG(rating) AS average FROM ".self::$table_name." WHERE status='1' AND rating > 0";
+		$result = $db->query($sql);
+		$return = $db->fetch_array($result);
+		return ($return && $return['average'] > 0) ? round($return['average'], 1) : 4.5 ;
 	}
 }
 ?>

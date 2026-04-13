@@ -22,6 +22,8 @@
 			$record->country	= $_REQUEST['country'];
 			$record->via_type	= $_REQUEST['via_type'];
 			$record->type		= $_REQUEST['type'];
+			$record->rating 	= $_REQUEST['rating'];
+
 			$record->sortorder	= Testimonial::find_maximum();
 			$db->begin();
 			if($record->save()): $db->commit();
@@ -48,6 +50,8 @@
 			$record->country	= $_REQUEST['country'];
 			$record->via_type	= $_REQUEST['via_type'];
 			$record->type		= $_REQUEST['type'];
+			$record->rating 	= $_REQUEST['rating'];
+
 
 			$db->begin();
 			if($record->save()): $db->commit();

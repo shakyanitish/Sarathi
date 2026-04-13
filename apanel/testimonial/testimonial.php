@@ -167,6 +167,26 @@ endif;
             </div>
 
             <div class="form-row">
+                    <div class="form-label col-md-2">
+                        <label for="">
+                            Rating :
+                        </label>
+                    </div>
+                    <div class="form-input col-md-6">
+                        <select class="col-md-6" name="rating" id="rating">
+                            <option value="<?php echo !empty($testimonialInfo->rating) ? $testimonialInfo->rating : "0"; ?>"
+                                    selected="selected">
+                                <?php echo !empty($testimonialInfo->rating) ? $testimonialInfo->rating : "Rating"; ?></option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div> 
+
+            <div class="form-row">
                 <div class="form-label col-md-2">
                     <label for="">
                         Content :

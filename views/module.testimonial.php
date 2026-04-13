@@ -50,13 +50,19 @@ if(!empty($tstRand)) {
             $read_more = ' <a href="javascript:void(0);" class="testi-read-more">Read More +</a>';
         }
 
+        $rating = !empty($tstRow->rating) ? (int)$tstRow->rating : 5;
+        $stars = '';
+        for ($i = 1; $i <= 5; $i++) {
+            $stars .= ($i <= $rating) ? '&#9733;' : '&#9734;';
+        }
+
 		$tstHead.='
 	<div class="testi-card">
-		<div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+		<div class="testi-stars">'.$stars.'</div>
 		<p class="testi-text">"'.$display_content.'"'.$read_more.'</p>
         <div class="testi-full-content" style="display:none;">
             <span class="testi-popup-close">&times;</span>
-            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="testi-stars">'.$stars.'</div>
             <div class="testi-popup-full-text">"'.$full_content.'"</div>
             <div class="testi-popup-author">
                 <span class="testi-name">'.$tstRow->name.'</span>
@@ -98,6 +104,12 @@ if(!empty($tstRec)) {
             $read_more = ' <a href="javascript:void(0);" class="testi-read-more">Read More +</a>';
         }
 
+        $rating = !empty($tstRow->rating) ? (int)$tstRow->rating : 5;
+        $stars = '';
+        for ($i = 1; $i <= 5; $i++) {
+            $stars .= ($i <= $rating) ? '&#9733;' : '&#9734;';
+        }
+
 		$restst.='<!-- <div class="item">
             <div class="testimonial">
                 <i class="icon ion-quote"></i>
@@ -107,11 +119,11 @@ if(!empty($tstRec)) {
         </div>-->
 
                     <div class="testi-card">
-                        <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                        <div class="testi-stars">'.$stars.'</div>
                         <p class="testi-text">"'.$display_content.'"'.$read_more.'</p>
                         <div class="testi-full-content" style="display:none;">
                             <span class="testi-popup-close">&times;</span>
-                            <div class="testi-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                            <div class="testi-stars">'.$stars.'</div>
                             <div class="testi-popup-full-text">"'.$full_content.'"</div>
                             <div class="testi-popup-author">
                                 <span class="testi-name">'.$tstRow->name.'</span>
@@ -131,4 +143,7 @@ if(!empty($tstRec)) {
 }
 
 $jVars['module:testimonialList'] = $restst;
+
+$jVars['module:testimonial-average-rating'] = Testimonial::getAverageRating();
+$jVars['module:testimonial-total-review'] = number_format(Testimonial::getTotalTestimonial());
 ?>
