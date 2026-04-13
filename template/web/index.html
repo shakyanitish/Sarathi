@@ -424,18 +424,32 @@
                         var btn = form.querySelector('.fb-submit-btn');
                         btn.classList.add('loading');
 
-                        // Simulate form submission
-                        setTimeout(function () {
-                            btn.classList.remove('loading');
-                            statusMsg.innerHTML = 'Thank you! Your feedback has been submitted.';
-                            statusMsg.className = 'fb-success-msg';
+                        var formData = new FormData(form);
 
-                            // Close modal after success
-                            setTimeout(closeModal, 2500);
-                        }, 1500);
+                        fetch('testimonial_submit.php', {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            btn.classList.remove('loading');
+                            if (data.action === 'success') {
+                                statusMsg.innerHTML = data.message;
+                                statusMsg.className = 'fb-success-msg';
+                                setTimeout(closeModal, 2500);
+                            } else {
+                                statusMsg.innerHTML = data.message;
+                                statusMsg.className = 'fb-error-msg';
+                            }
+                        })
+                        .catch(error => {
+                            btn.classList.remove('loading');
+                            statusMsg.innerHTML = 'An error occurred. Please try again.';
+                            statusMsg.className = 'fb-error-msg';
+                            console.error('Error:', error);
+                        });
                     });
                 }
-                // Image upload preview
                 var uploadInput = document.getElementById('fb-images');
                 var uploadArea = document.getElementById('fbUploadArea');
                 var previewGrid = document.getElementById('fbPreviewGrid');

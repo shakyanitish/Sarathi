@@ -23,6 +23,7 @@
 			$record->via_type	= $_REQUEST['via_type'];
 			$record->type		= $_REQUEST['type'];
 			$record->rating 	= $_REQUEST['rating'];
+			$record->email 	    = $_REQUEST['email'];
 
 			$record->sortorder	= Testimonial::find_maximum();
 			$db->begin();
@@ -51,6 +52,7 @@
 			$record->via_type	= $_REQUEST['via_type'];
 			$record->type		= $_REQUEST['type'];
 			$record->rating 	= $_REQUEST['rating'];
+			$record->email 	    = $_REQUEST['email'];
 
 
 			$db->begin();

@@ -6,7 +6,8 @@ $booking_type = Config::getField('book_type', true);
 $booking_page = Config::getField('hotel_page', true);
 $booking_code = Config::getField('hotel_code', true);
 // Default Reservation
-if ($booking_type == 1) {    $resbking .= '<div id="book-bar"></div>
+if ($booking_type == 1) {
+    $resbking .= '<div id="book-bar"></div>
 <div class="book-bar fade">
 	<div class="center">
     	<div class="date-field date-arrival">

@@ -25,6 +25,8 @@ if (isset($_GET['page']) && $_GET['page'] == "testimonial" && isset($_GET['mode'
                         <th style="display:none;"></th>
                         <th class="text-center"><input class="check-all" type="checkbox" /></th>
                         <th class="text-center">Name</th>
+                        <th class="text-center">Email</th>
+                        <th class="text-center">Rating</th>
                         <th class="text-center">Country</th>
                         <th class="text-center"><?php echo $GLOBALS['basic']['action']; ?></th>
                     </tr>
@@ -43,6 +45,8 @@ if (isset($_GET['page']) && $_GET['page'] == "testimonial" && isset($_GET['mode'
                                         title="<?php echo $record->name; ?>"><?php echo $record->name; ?></a>
                                 </div>
                             </td>
+                            <td><?php echo $record->email; ?></td>
+                            <td class="text-center"><?php echo $record->rating; ?></td>
                             <td><?php echo $record->country; ?></td>
                             <td class="text-center">
                                 <?php
