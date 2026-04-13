@@ -25,7 +25,7 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
                         <th style="display:none;"></th>
                         <th class="text-center"><input class="check-all" type="checkbox" /></th>
                         <th>Title</th>
-                        <th>Link</th>
+                        <th>Type</th>
                         <th class="text-center"><?php echo $GLOBALS['basic']['action']; ?></th>
                     </tr>
                 </thead>
@@ -41,7 +41,13 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
                                     <a href="javascript:void(0);" onClick="editRecord(<?php echo $record->id; ?>);" class="loadingbar-demo" title="<?php echo $record->title; ?>"><?php echo $record->title; ?></a>
                                 </div>
                             </td>
-                            <td><?php echo set_na($record->linksrc); ?></td>
+                            <td>
+                                <?php if ($record->exclusive == 1): ?>
+                                    <span title="Offer">Offer</span>
+                                <?php else: ?>
+                                    <span title="Package">Package</span>
+                                <?php endif; ?>
+                            </td>
                             <td class="text-center">
                                 <?php
                                 $statusImage = ($record->status == 1) ? "bg-green" : "bg-red";
@@ -163,7 +169,7 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
                     <div id="preview_Image"><input type="hidden" name="imageArrayname" value="" class="" /></div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row hide">
                     <div class="form-label col-md-2">
                         <label for="">
                             Link Type :
@@ -177,7 +183,7 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row hide">
                     <div class="form-label col-md-2">
                         <label for="">
                             Link :
@@ -232,14 +238,14 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
                 <div class="form-row">
                     <div class="form-label col-md-2">
                         <label for="">
-                            Exclusive :
+                            Type :
                         </label>
                     </div>
                     <div class="form-checkbox-radio col-md-9">
                         <input type="radio" class="custom-radio" name="exclusive" id="check1" value="1" <?php echo !empty($exclusive) ? $exclusive : ""; ?>>
-                        <label for="">Yes</label>
+                        <label for="">Offer</label>
                         <input type="radio" class="custom-radio" name="exclusive" id="check0" value="0" <?php echo !empty($unexclusive) ? $unexclusive : "checked"; ?>>
-                        <label for="">No</label>
+                        <label for="">Package</label>
                     </div>
                 </div>
 

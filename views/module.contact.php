@@ -18,9 +18,7 @@ if (defined('CONTACT_PAGE')) {
         // remove spaces for tel link
         $cleanTel = str_replace(' ', '', $tel);
 
-        $tellinked .= '<a href="tel:+977' . $cleanTel . '">
-                    +977 ' . $tel . '
-               </a>';
+        $tellinked .= '<a href="tel:+977' . $cleanTel . '">+977 ' . $tel . '</a>';
 
         // separator except last item
         if ($index !== array_key_last($telno)) {
@@ -88,7 +86,7 @@ if (defined('CONTACT_PAGE')) {
                     </div>
                     <div class="contact-description">
                         <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a diam lectus. Sed sit amet ipsum mauris. Maecenas congue ligula ac quam viverra nec consectetur ante hendrerit. Donec et mollis dolor. Praesent et diam eget libero egestas mattis sit amet vitae augue. Nam tincidunt congue enim, ut porta lorem lacinia consectetur. Donec ut libero sed arcu vehicula ultricies a non tortor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Experience the perfect blend of tradition and comfort in the heart of Dhulikhel.Our team is here to assist you with your bookings, enquiries, and any special requests you may have.
                         </p>
                        
                     </div>
