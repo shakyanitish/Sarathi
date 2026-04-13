@@ -146,4 +146,13 @@ $jVars['module:testimonialList'] = $restst;
 
 $jVars['module:testimonial-average-rating'] = Testimonial::getAverageRating();
 $jVars['module:testimonial-total-review'] = number_format(Testimonial::getTotalTestimonial());
+
+// Average stars
+$avgRating = Testimonial::getAverageRating();
+$intRating = round($avgRating);
+$avgStars = '';
+for ($i = 1; $i <= 5; $i++) {
+    $avgStars .= ($i <= $intRating) ? '&#9733;' : '&#9734;';
+}
+$jVars['module:testimonial-average-stars'] = $avgStars;
 ?>
