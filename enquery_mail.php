@@ -7,6 +7,19 @@ if($_POST['action']=="forcoment"):
 	$sitename = Config::getField('sitename',true);
 
 	foreach($_POST as $key=>$val){$$key=$val;}
+
+	// Only include the Offer row when an offer title was submitted
+	$offer_title = isset($offer_title) ? trim($offer_title) : '';
+	$offerRow = !empty($offer_title)
+		? '<p><strong>Offer</strong> : '.htmlspecialchars($offer_title).'</p>'
+		: '';
+
+	// Only include the Article row when an article title was submitted
+	$article_title = isset($article_title) ? trim($article_title) : '';
+	$articleRow = !empty($article_title)
+		? '<p><strong>Enquiry For</strong> : '.htmlspecialchars($article_title).'</p>'
+		: '';
+
 	$body = '
 	<table width="100%" border="0" cellpadding="0" style="font:12px Arial, serif;color:#222;">
 	  <tr>
@@ -16,7 +29,9 @@ if($_POST['action']=="forcoment"):
 	  <tr>
 		<td><p><span style="color:#0065B3; font-size:14px; font-weight:bold">Comment message</span><br />
 		  The details provided are:</p>
-		  <p><strong>Fullname</strong> : '.$fullname.'<br />		
+		  '.$articleRow.'
+		  '.$offerRow.'
+		  <p><strong>Fullname</strong> : '.$fullname.'<br />
 		  <strong>E-mail Address</strong>: '.$mailaddress.'<br />
 		  <strong>Contact No.</strong>: '.$phoneno.'<br />
 		  <strong>Message</strong>: '.$message.'<br />

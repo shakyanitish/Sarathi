@@ -45,7 +45,7 @@ if(defined('HOME_PAGE')) {
 									<button type="button" class="next" aria-label="Next image"><i class="icon ion-ios-arrow-right"></i></button>
 								</div>
 							</div>
-							<div class="details">
+							<div class="details" data-article-title="'.$homeRow->title.'">
 								<div class="float">
 								<h3>
 									'.$homeRow->title.'</h3>

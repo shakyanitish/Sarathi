@@ -86,7 +86,7 @@ if (defined('CONTACT_PAGE')) {
                     </div>
                     <div class="contact-description">
                         <p>
-                        Experience the perfect blend of tradition and comfort in the heart of Dhulikhel.Our team is here to assist you with your bookings, enquiries, and any special requests you may have.
+                        '.strip_tags($siteRegulars->breif).'
                         </p>
                        
                     </div>

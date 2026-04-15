@@ -114,7 +114,7 @@ if ($offrRecList) {
 
                     <p>'.$offrRow->sub_title.'</p>
                     '.$offrRow->content.'
-                     <a class="button inquiry-btn" href="javascript:void(0);" style="margin-top: 25px; display: inline-block;">
+                     <a class="button inquiry-btn" href="javascript:void(0);" data-offer-title="'.$offrRow->title.'" style="margin-top: 25px; display: inline-block;">
                                 Inquiry Now <i class="icon ion-ios-arrow-right"></i>
                     </a>
                 </div>
