@@ -567,34 +567,45 @@ $(document).ready(function () {
 
 if ($(window).width() > 1024) {
 
-	var timer;
-	function fader() {
+    var timer;
 
-		'use strict';
+    function fader() {
 
-		// Visible Items
+        'use strict';
 
-		var visibleitems = function () {
-			$('.fade').each(function () {
-				if ($(this).visible(true)) {
-					$(this).addClass('visible');
-				}
-			});
-		};
-		visibleitems();
+        try {
+            // Visible Items
+            var visibleitems = function () {
+                $('.fade').each(function () {
+                    if ($(this).visible(true)) {
+                        $(this).addClass('visible');
+                    }
+                });
+            };
 
-		$(window).scroll(function () {
-			visibleitems();
-		});
-	}
+            visibleitems();
 
-	setTimeout(function () {
+            $(window).scroll(function () {
+                visibleitems();
+            });
 
-		'use strict';
+        } catch (error) {
+            console.error("Fader function error:", error);
+        }
+    }
 
-		$(window).off('load.fader');
-		fader();
-	}, 3000);
+    setTimeout(function () {
+
+        'use strict';
+
+        try {
+            $(window).off('load.fader');
+            fader();
+        } catch (error) {
+            console.error("Timeout fader execution error:", error);
+        }
+
+    }, 3000);
 
 }
 
@@ -604,38 +615,33 @@ if ($(window).width() > 1024) {
 
 $(window).load(function () {
 
-	'use strict';
+    'use strict';
 
-	// Testimonials
+    try {
 
-	$('.testimonials .center').isotope({
-		layoutMode: 'packery',
-		itemSelector: '.item',
-		transitionDuration: '0',
-		resizable: false
-	});
+        // Testimonials
+        $('.testimonials .center').isotope({
+            layoutMode: 'packery',
+            itemSelector: '.item',
+            transitionDuration: '0',
+            resizable: false
+        });
 
-	// Refreshes browser when resizing between desktop and tablet. Not necessary, but handy for responsive testing as different JS is being loaded.
+        // Fixes slider loading issues in some browsers
+        $(window).trigger('resize');
 
-	// if ($(window).width() > 1024) { var browsersize = 'desktop'; }
-	// else { var browsersize = 'tablet'; }
-	// $(window).resize(function () {
-	// 	if ($(window).width() > 1024) {
-	// 		if (browsersize == 'tablet') { location.href = location.href }
-	// 	}
-	// 	else {
-	// 		if (browsersize == 'desktop') { location.href = location.href }
-	// 	}
-	// });
+        // Section Fade
+        if (typeof timer !== "undefined") {
+            clearTimeout(timer);
+        }
 
-	// Fixes slider loading issues in some browsers
+        if (typeof fader === "function") {
+            fader();
+        }
 
-	$(window).trigger('resize');
-
-	// Section Fade
-
-	clearTimeout(timer);
-	fader();
+    } catch (error) {
+        console.error("Window load script error:", error);
+    }
 
 });
 
@@ -711,16 +717,7 @@ jQuery(document).ready(function () {
 		});
 	}
 
-	$(document).on('click', '.inquiry-btn, .header-social', function(e) {
-		e.preventDefault();
-		var $targetPopup = $('#inquiry-popup');
-		if ($.featherlight && $targetPopup.length) {
-			$.featherlight('#inquiry-popup', {
-				variant: 'inquiry-modal-variant'
-			});
-		}
-		return false;
-	});
+
 
 	// Testimonial Read More popup
 	$(document).on('click', '.testi-read-more', function(e) {
@@ -742,55 +739,194 @@ jQuery(document).ready(function () {
 		}
 	});
 
+	//Form Validation
+	// $(document).on('click', '.inquiry-btn, .header-social', function(e) {
+	// 	e.preventDefault();
+
+	// 	var $targetPopup = $('#inquiry-popup');
+
+	// 	if ($.featherlight && $targetPopup.length) {
+	// 		$.featherlight('#inquiry-popup', {
+	// 			variant: 'inquiry-modal-variant',
+
+	// 			afterOpen: function () {
+	// 				var $inquiryForms = $('#frm-inquiry, #frm-inquiry-modal');
+
+	// 				if ($inquiryForms.length) {
+	// 					$inquiryForms.each(function () {
+	// 						var $thisForm = $(this);
+
+	// 						// Prevent double binding
+	// 						if ($thisForm.data('validator')) return;
+
+	// 						$thisForm[0].reset();
+
+	// 						$thisForm.validate({
+	// 							errorElement: 'span',
+	// 							errorClass: 'validate-has-error',
+	// 							rules: {
+	// 								fullname: { required: true },
+	// 								mailaddress: { required: true, email: true },
+	// 								phoneno: { required: true }
+	// 							},
+	// 							messages: {
+	// 								fullname: { required: "Please enter your Full name." },
+	// 								mailaddress: {
+	// 									required: "Please enter your Email Address.",
+	// 									email: "Please enter a VALID email address."
+	// 								},
+	// 								phoneno: { required: "Please enter your Phone Number." }
+	// 							},
+	// 							submitHandler: function (form) {
+
+	// 								var recaptcha = jQuery("#contact_recaptcha").val();
+	// 								if (recaptcha == "") {
+	// 									alert("Please verify reCAPTCHA");
+	// 									return false;
+	// 								}
+
+	// 								var Frmval = $thisForm.serialize();
+	// 								var $btn = $thisForm.find("button[type='submit']");
+	// 								var originalBtnHtml = $btn.html();
+
+	// 								$btn.prop("disabled", true).html('Processing... <i class="icon ion-ios-arrow-right"></i>');
+
+	// 								$.ajax({
+	// 									type: "POST",
+	// 									dataType: "JSON",
+	// 									url: base_url + "enquery_mail.php",
+	// 									data: "action=forcoment&" + Frmval,
+	// 									success: function (data) {
+	// 										$btn.prop("disabled", false).html(originalBtnHtml);
+	// 										$('div#result_msg').html(data.message).css('display', 'block').fadeIn().delay(5000).fadeOut();
+	// 										$thisForm[0].reset();
+
+	// 										if ($.featherlight && $.featherlight.current()) {
+	// 											$.featherlight.current().close();
+	// 										}
+	// 									}
+	// 								});
+
+	// 								return false;
+	// 							}
+	// 						});
+	// 					});
+	// 				}
+	// 			}
+	// 		});
+	// 	}
+
+	// 	return false;
+	// });
+
+
 	// Inquiry form handler for packages-inner
-	var $inquiryForms = jQuery('#frm-inquiry, #frm-inquiry-modal');
-	if ($inquiryForms.length) {
-		$inquiryForms.each(function() {
-			var $thisForm = $(this);
-			$thisForm[0].reset();
-			$thisForm.validate({
-				errorElement: 'span',
-				errorClass: 'validate-has-error',
-				rules: {
-					fullname: { required: true },
-					mailaddress: { required: true, email: true },
-					phoneno: { required: true },
-					message: { required: true }
-				},
-				messages: {
-					fullname: { required: "Enter your Fullname", },
-					mailaddress: { required: "Enter your email address", email: "Enter a VALID email address" },
-					phoneno: { required: "Enter your Phone No." },
-					message: { required: "Enter your Message" }
-				},
-				submitHandler: function (form) {
-					var Frmval = $thisForm.serialize();
-					var $btn = $thisForm.find("button[type='submit']");
-					var originalBtnHtml = $btn.html();
-					
-					$btn.attr("disabled", "true").html('Processing... <i class="icon ion-ios-arrow-right"></i>');
-					jQuery.ajax({
-						type: "POST",
-						dataType: "JSON",
-						url: base_url + "enquery_mail.php",
-						data: "action=forcoment&" + Frmval,
-						success: function (data) {
-							var msg = eval(data);
-							$btn.removeAttr("disabled").html(originalBtnHtml);
-							alert(msg.message);
-							$thisForm[0].reset();
-							// Close featherlight if it's open
-							if ($.featherlight && $.featherlight.current()) {
-								$.featherlight.current().close();
-							}
+	$(document).on('click', '.inquiry-btn, .header-social', function(e) {
+		e.preventDefault();
+
+		var $targetPopup = $('#inquiry-popup');
+
+		if ($.featherlight && $targetPopup.length) {
+			$.featherlight('#inquiry-popup', {
+				variant: 'inquiry-modal-variant',
+
+				afterOpen: function () {
+					var $lightbox = this.$instance;
+					var $inquiryForms = $lightbox.find('#frm-inquiry, #frm-inquiry-modal');
+
+					// Render a fresh reCAPTCHA inside the modal clone
+					// (Featherlight clones #inquiry-popup, but the reCAPTCHA iframe doesn't survive cloning)
+					var widgetId = null;
+					var recaptchaContainer = $lightbox.find('.g-recaptcha')[0];
+					if (recaptchaContainer && typeof grecaptcha !== 'undefined') {
+						recaptchaContainer.innerHTML = '';
+						try {
+							widgetId = grecaptcha.render(recaptchaContainer, {
+								'sitekey': '6LdeS7gsAAAAAB8z5gawlnG6UqL7AaFOsxY7S33y'
+							});
+						} catch(e) {
+							console.warn('reCAPTCHA render error:', e);
 						}
-					});
-					return false;
+					}
+
+					if ($inquiryForms.length) {
+						$inquiryForms.each(function () {
+							var $thisForm = $(this);
+
+							// Prevent double binding
+							if ($thisForm.data('validator')) return;
+
+							$thisForm[0].reset();
+
+							$thisForm.validate({
+								errorElement: 'span',
+								errorClass: 'validate-has-error',
+								rules: {
+									fullname: { required: true },
+									mailaddress: { required: true, email: true },
+									phoneno: { required: true }
+								},
+								messages: {
+									fullname: { required: "Please enter your Full name." },
+									mailaddress: {
+										required: "Please enter your Email Address.",
+										email: "Please enter a VALID email address."
+									},
+									phoneno: { required: "Please enter your Phone Number." }
+								},
+								submitHandler: function (form) {
+
+									var recaptchaResponse = '';
+									if (typeof grecaptcha !== 'undefined' && widgetId !== null) {
+										recaptchaResponse = grecaptcha.getResponse(widgetId);
+									}
+									if (!recaptchaResponse) {
+										alert("Please verify reCAPTCHA");
+										return false;
+									}
+
+									var Frmval = $thisForm.serialize();
+									var $btn = $thisForm.find("button[type='submit']");
+									var originalBtnHtml = $btn.html();
+
+									$btn.prop("disabled", true).html('Processing... <i class="icon ion-ios-arrow-right"></i>');
+
+									$.ajax({
+										type: "POST",
+										dataType: "JSON",
+										url: base_url + "enquery_mail.php",
+										data: "action=forcoment&" + Frmval,
+										success: function (data) {
+											$btn.prop("disabled", false).html(originalBtnHtml);
+											var $resMsg = $lightbox.find('#result_msg');
+											$resMsg.html(data.message).css('display', 'block').fadeIn();
+											
+											$thisForm[0].reset();
+											if (typeof grecaptcha !== 'undefined' && widgetId !== null) {
+												grecaptcha.reset(widgetId);
+											}
+
+											// Optional: Close after 3 seconds so user can read the message
+											setTimeout(function(){
+												$resMsg.fadeOut();
+												if ($.featherlight && $.featherlight.current()) {
+													$.featherlight.current().close();
+												}
+											}, 3000);
+										}
+									});
+
+									return false;
+								}
+							});
+						});
+					}
 				}
 			});
-		});
-	}
+		}
 
+		return false;
+	});
 
 	if (jQuery('#roombooking')[0]) {
 

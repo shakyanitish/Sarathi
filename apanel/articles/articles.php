@@ -40,7 +40,11 @@ if (isset($_GET['page']) && $_GET['page'] == "articles" && isset($_GET['mode']) 
                 foreach ($records as $key => $record): ?>
                     <tr id="<?php echo $record->id; ?>">
                         <td style="display:none;"><?php echo $key + 1; ?></td>
-                        <td><input type="checkbox" class="bulkCheckbox" bulkId="<?php echo $record->id; ?>"/></td>
+                        <td>
+                            <?php if ($record->id != 11): ?>
+                                <input type="checkbox" class="bulkCheckbox" bulkId="<?php echo $record->id; ?>"/>
+                            <?php endif; ?>
+                        </td>
                         <td>
                             <div class="col-md-7">
                                 <a href="javascript:void(0);" onClick="editRecord(<?php echo $record->id; ?>);" class="loadingbar-demo"
@@ -63,10 +67,12 @@ if (isset($_GET['page']) && $_GET['page'] == "articles" && isset($_GET['mode']) 
                                 <i class="glyph-icon icon-edit"></i>
                             </a>
 
-                            <a href="javascript:void(0);" class="btn small bg-red tooltip-button" data-placement="top" title="Remove"
-                               onclick="recordDelete(<?php echo $record->id; ?>);">
-                                <i class="glyph-icon icon-remove"></i>
-                            </a>
+                            <?php if ($record->id != 11): ?>
+                                <a href="javascript:void(0);" class="btn small bg-red tooltip-button" data-placement="top" title="Remove"
+                                   onclick="recordDelete(<?php echo $record->id; ?>);">
+                                    <i class="glyph-icon icon-remove"></i>
+                                </a>
+                            <?php endif; ?>
                             <input name="sortId" type="hidden" value="<?php echo $record->id; ?>">
                         </td>
                     </tr>

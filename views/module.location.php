@@ -2,12 +2,7 @@
 /*
 * Home About Text
 */
-$reshtxt='';
-if(defined('HOME_PAGE')) {
-	$reshtxt.= $configRec->breif;
-}
 
-$jVars['module:about-text'] = $reshtxt;
 
 $resfloc='';
 $reslocinfo='';

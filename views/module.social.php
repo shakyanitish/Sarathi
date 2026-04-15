@@ -20,24 +20,29 @@ $resocl.='<div id="mobilenav"><i class="icon ion-navicon"></i></div>
         <p class="form-subtitle">We\'ll get back to you shortly with availability and details.</p>
         <form action="#" method="POST" id="frm-inquiry-modal" class="inquiry-form">
             <div class="field">
-                <input type="text" name="fullname" placeholder="Your Full Name" required>
+                <input type="text" name="fullname" placeholder="Your Full Name*">
             </div>
             <div class="field">
-                <input type="email" name="mailaddress" placeholder="Email Address" required>
+                <input type="email" name="mailaddress" placeholder="Email Address*" required>
             </div>
             <div class="field">
-                <input type="tel" name="phoneno" placeholder="Phone Number">
+                <input type="tel" name="phoneno" placeholder="Phone Number*" required oninput="this.value = this.value.replace(/[^0-9]/g, \'\');">
             </div>
             <div class="field">
                 <textarea name="message" rows="4" placeholder="Your message or Special Requirements"></textarea>
+            </div>
+            <div class="field">
+                 <div class="g-recaptcha" data-sitekey="6LdeS7gsAAAAAB8z5gawlnG6UqL7AaFOsxY7S33y"></div>
             </div>
             <div class="form-action">
                 <button type="submit" id="btn-inquiry-modal" class="button">
                     Submit Inquiry <i class="icon ion-ios-arrow-right"></i>
                 </button>
             </div>
+            <div id="result_msg" style="display:none;"></div>
         </form>
-    </div>';
+    </div>
+    ';
 	
 	
 

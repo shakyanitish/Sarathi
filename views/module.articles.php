@@ -10,6 +10,10 @@ if(defined('HOME_PAGE')) {
 		$homeRec = Article::find_by_type(1);
 		if(!empty($homeRec)) {		
 			foreach($homeRec as $m => $homeRow) {
+				//Skip for the id 11
+			if($homeRow->id == 11) {
+                continue;
+            }
                 $imgsrc = '';
 				if($homeRow->image!='a:0:{}') {
 					$innimg = unserialize($homeRow->image);
@@ -45,10 +49,9 @@ if(defined('HOME_PAGE')) {
 								<div class="float">
 								<h3>
 									'.$homeRow->title.'</h3>
-								<p>
-									'.$homeRow->brief.'</p>
-								<button class="header-social">Inquiry Now</button>
-									
+								
+									'.$homeRow->brief.'
+								
 									
 									
 								</div>
@@ -60,6 +63,20 @@ if(defined('HOME_PAGE')) {
 }
 
 $jVars['module:homepage-list'] = $reshomelist;
+
+
+$homeabout = '';
+
+if(defined('HOME_PAGE')) {
+    $homeRow = Article::find_by_id(11);
+
+    if(!empty($homeRow)) {
+        $content = str_replace('<hr id="system_readmore" style="border-style: dashed; border-color: orange;" />', '', $homeRow->content);
+        $homeabout .= $content;
+    }
+}
+
+$jVars['module:home-about'] = $homeabout;
 
 
 /*

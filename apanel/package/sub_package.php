@@ -10,16 +10,18 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
     ?>
     <h3>
         List Sub Package ["<?php echo Package::getPackageName($id); ?>"]
-        <a class="loadingbar-demo btn medium bg-blue-alt float-right" href="javascript:void(0);" onClick="AddNewSubpackage(<?php echo $id; ?>);">
-    <span class="glyph-icon icon-separator">
-    	<i class="glyph-icon icon-plus-square"></i>
-    </span>
+        <a class="loadingbar-demo btn medium bg-blue-alt float-right" href="javascript:void(0);"
+            onClick="AddNewSubpackage(<?php echo $id; ?>);">
+            <span class="glyph-icon icon-separator">
+                <i class="glyph-icon icon-plus-square"></i>
+            </span>
             <span class="button-content"> Add New </span>
         </a>
-        <a class="loadingbar-demo btn medium bg-blue-alt float-right mrg5R" href="javascript:void(0);" onClick="viewPackagelist();">
-    <span class="glyph-icon icon-separator">
-        <i class="glyph-icon icon-arrow-circle-left"></i>
-    </span>
+        <a class="loadingbar-demo btn medium bg-blue-alt float-right mrg5R" href="javascript:void(0);"
+            onClick="viewPackagelist();">
+            <span class="glyph-icon icon-separator">
+                <i class="glyph-icon icon-arrow-circle-left"></i>
+            </span>
             <span class="button-content"> Back </span>
         </a>
     </h3>
@@ -28,55 +30,63 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
         <div class="example-code">
             <table cellpadding="0" cellspacing="0" border="0" class="table" id="subexample">
                 <thead>
-                <tr>
-                    <th style="display:none;"></th>
-                    <th class="text-center"><input class="check-all" type="checkbox"/></th>
-                    <th>Title</th>
-                    <th class="text-center">Images</th>
-                    <th class="text-center"><?php echo $GLOBALS['basic']['action']; ?></th>
-                </tr>
+                    <tr>
+                        <th style="display:none;"></th>
+                        <th class="text-center"><input class="check-all" type="checkbox" /></th>
+                        <th>Title</th>
+                        <th class="text-center">Images</th>
+                        <th class="text-center"><?php echo $GLOBALS['basic']['action']; ?></th>
+                    </tr>
                 </thead>
 
                 <tbody>
-                <?php $records = Subpackage::find_by_sql("SELECT * FROM " . $subpackageTablename . " WHERE type=" . $id . " ORDER BY sortorder DESC ");
-                foreach ($records as $key => $record): ?>
-                    <tr id="<?php echo $record->id; ?>">
-                        <td style="display:none;"><?php echo $key + 1; ?></td>
-                        <td><input type="checkbox" class="bulkCheckbox" bulkId="<?php echo $record->id; ?>"/></td>
-                        <td>
-                            <div class="col-md-7">
-                                <a href="javascript:void(0);" onClick="editsubpackage(<?php echo $record->type; ?>,<?php echo $record->id; ?>);"
-                                   class="loadingbar-demo" title="<?php echo $record->title; ?>"><?php echo $record->title; ?></a>
-                            </div>
-                        </td>
-                        <td class="text-center">
-                    <span class="badge bg-orange tooltip-button mrg15R" title="No of Room Images" data-original-title="Badge with .bg-orange">
-                        <?php $nos = unserialize($record->image);
-                        echo count($nos); ?>
-                    </span>
-                        </td>
-                        <td class="text-center">
-                            <?php
-                            $statusImage = ($record->status == 1) ? "bg-green" : "bg-red";
-                            $statusText = ($record->status == 1) ? $GLOBALS['basic']['clickUnpub'] : $GLOBALS['basic']['clickPub'];
-                            ?>
-                            <a href="javascript:void(0);" class="btn small <?php echo $statusImage; ?> tooltip-button statusSubToggler" data-placement="top"
-                               title="<?php echo $statusText; ?>" status="<?php echo $record->status; ?>" id="imgHolder_<?php echo $record->id; ?>"
-                               moduleId="<?php echo $record->id; ?>">
-                                <i class="glyph-icon icon-flag"></i>
-                            </a>
-                            <a href="javascript:void(0);" class="loadingbar-demo btn small bg-blue-alt tooltip-button" data-placement="top" title="Edit"
-                               onclick="editsubpackage(<?php echo $record->type; ?>,<?php echo $record->id; ?>);">
-                                <i class="glyph-icon icon-edit"></i>
-                            </a>
-                            <a href="javascript:void(0);" class="btn small bg-red tooltip-button" data-placement="top" title="Remove"
-                               onclick="subrecordDelete(<?php echo $record->id; ?>);">
-                                <i class="glyph-icon icon-remove"></i>
-                            </a>
-                            <input name="sortId" type="hidden" value="<?php echo $record->id; ?>">
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                    <?php $records = Subpackage::find_by_sql("SELECT * FROM " . $subpackageTablename . " WHERE type=" . $id . " ORDER BY sortorder DESC ");
+                    foreach ($records as $key => $record): ?>
+                        <tr id="<?php echo $record->id; ?>">
+                            <td style="display:none;"><?php echo $key + 1; ?></td>
+                            <td><input type="checkbox" class="bulkCheckbox" bulkId="<?php echo $record->id; ?>" /></td>
+                            <td>
+                                <div class="col-md-7">
+                                    <a href="javascript:void(0);"
+                                        onClick="editsubpackage(<?php echo $record->type; ?>,<?php echo $record->id; ?>);"
+                                        class="loadingbar-demo"
+                                        title="<?php echo $record->title; ?>"><?php echo $record->title; ?></a>
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                <span class="badge bg-orange tooltip-button mrg15R" title="No of Room Images"
+                                    data-original-title="Badge with .bg-orange">
+                                    <?php
+                                    $nos = !empty($record->image) ? @unserialize($record->image) : [];
+                                    echo is_array($nos) ? count($nos) : 0;
+                                    ?>
+                                </span>
+                            </td>
+                            <td class="text-center">
+                                <?php
+                                $statusImage = ($record->status == 1) ? "bg-green" : "bg-red";
+                                $statusText = ($record->status == 1) ? $GLOBALS['basic']['clickUnpub'] : $GLOBALS['basic']['clickPub'];
+                                ?>
+                                <a href="javascript:void(0);"
+                                    class="btn small <?php echo $statusImage; ?> tooltip-button statusSubToggler"
+                                    data-placement="top" title="<?php echo $statusText; ?>"
+                                    status="<?php echo $record->status; ?>" id="imgHolder_<?php echo $record->id; ?>"
+                                    moduleId="<?php echo $record->id; ?>">
+                                    <i class="glyph-icon icon-flag"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="loadingbar-demo btn small bg-blue-alt tooltip-button"
+                                    data-placement="top" title="Edit"
+                                    onclick="editsubpackage(<?php echo $record->type; ?>,<?php echo $record->id; ?>);">
+                                    <i class="glyph-icon icon-edit"></i>
+                                </a>
+                                <a href="javascript:void(0);" class="btn small bg-red tooltip-button" data-placement="top"
+                                    title="Remove" onclick="subrecordDelete(<?php echo $record->id; ?>);">
+                                    <i class="glyph-icon icon-remove"></i>
+                                </a>
+                                <input name="sortId" type="hidden" value="<?php echo $record->id; ?>">
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>
@@ -88,9 +98,9 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
             </select>
         </div>
         <a class="btn medium primary-bg" href="javascript:void(0);" id="applySelected_btn">
-    <span class="glyph-icon icon-separator float-right">
-      <i class="glyph-icon icon-cog"></i>
-    </span>
+            <span class="glyph-icon icon-separator float-right">
+                <i class="glyph-icon icon-cog"></i>
+            </span>
             <span class="button-content"> Submit </span>
         </a>
     </div>
@@ -106,10 +116,11 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
     ?>
     <h3>
         <?php echo (isset($_GET['subid'])) ? 'Edit Sub Package' : 'Add Sub Package'; ?>
-        <a class="loadingbar-demo btn medium bg-blue-alt float-right" href="javascript:void(0);" onClick="viewSubpackagelist(<?php echo $pid; ?>);">
-    <span class="glyph-icon icon-separator">
-    	<i class="glyph-icon icon-arrow-circle-left"></i>
-    </span>
+        <a class="loadingbar-demo btn medium bg-blue-alt float-right" href="javascript:void(0);"
+            onClick="viewSubpackagelist(<?php echo $pid; ?>);">
+            <span class="glyph-icon icon-separator">
+                <i class="glyph-icon icon-arrow-circle-left"></i>
+            </span>
             <span class="button-content"> Back </span>
         </a>
     </h3>
@@ -125,8 +136,9 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                         </label>
                     </div>
                     <div class="form-input col-md-20">
-                        <input placeholder="Package Title" class="col-md-6 validate[required,length[0,50]]" type="text" name="title" id="title"
-                               value="<?php echo !empty($subpackageInfo->title) ? $subpackageInfo->title : ""; ?>">
+                        <input placeholder="Package Title" class="col-md-6 validate[required,length[0,50]]" type="text"
+                            name="title" id="title"
+                            value="<?php echo !empty($subpackageInfo->title) ? $subpackageInfo->title : ""; ?>">
                     </div>
                 </div>
 
@@ -159,12 +171,14 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                                         endif;
                                         ?>
                                     </span>
-                                    <a class="btn small float-right" href="javascript:void(0);" onclick="deleteSavedPackageimage('001');">
+                                    <a class="btn small float-right" href="javascript:void(0);"
+                                        onclick="deleteSavedPackageimage('001');">
                                         <i class="glyph-icon icon-trash-o"></i>
                                     </a>
                                 </div>
-                                <img src="<?php echo IMAGE_PATH . 'subpackage/image/thumbnails/' . $imageRow2; ?>" style="width:100%"/>
-                                <input type="hidden" name="imageArrayname2" value="<?php echo $imageRow2; ?>"/>
+                                <img src="<?php echo IMAGE_PATH . 'subpackage/image/thumbnails/' . $imageRow2; ?>"
+                                    style="width:100%" />
+                                <input type="hidden" name="imageArrayname2" value="<?php echo $imageRow2; ?>" />
 
                             </div>
                         </div>
@@ -177,7 +191,8 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                             FB Sharing Image :
                         </label>
                     </div>
-                    <div class="form-input col-md-10 uploader3012 <?php echo !empty($subpackageInfo->fb_upload) ? "hide" : ""; ?>">
+                    <div
+                        class="form-input col-md-10 uploader3012 <?php echo !empty($subpackageInfo->fb_upload) ? "hide" : ""; ?>">
                         <input type="file" name="fb_upload" id="fb_upload" class="transparent no-shadow">
                         <label>
                             <small>Image Dimensions (1200px X 680px)</small>
@@ -189,22 +204,22 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                         <div class="col-md-2" id="removeSavedimg3012">
                             <div class="infobox info-bg">
                                 <div class="button-group" data-toggle="buttons">
-                                <span class="float-left">
-                                    <?php
-                                    if (file_exists(SITE_ROOT . "images/subpackage/social/" . $subpackageInfo->fb_upload)):
-                                        $filesize = filesize(SITE_ROOT . "images/subpackage/social/" . $subpackageInfo->fb_upload);
-                                        echo 'Size : ' . getFileFormattedSize($filesize);
-                                    endif;
-                                    ?>
-                                </span>
+                                    <span class="float-left">
+                                        <?php
+                                        if (file_exists(SITE_ROOT . "images/subpackage/social/" . $subpackageInfo->fb_upload)):
+                                            $filesize = filesize(SITE_ROOT . "images/subpackage/social/" . $subpackageInfo->fb_upload);
+                                            echo 'Size : ' . getFileFormattedSize($filesize);
+                                        endif;
+                                        ?>
+                                    </span>
                                     <a class="btn small float-right" href="javascript:void(0);"
-                                       onclick="deleteSavedPackageimage(3012);">
+                                        onclick="deleteSavedPackageimage(3012);">
                                         <i class="glyph-icon icon-trash-o"></i>
                                     </a>
                                 </div>
                                 <img src="<?php echo IMAGE_PATH . 'subpackage/social/thumbnails/' . $subpackageInfo->fb_upload; ?>"
-                                     style="width:100%"/>
-                                <input type="hidden" name="imageArrayname7" value="<?php echo $subpackageInfo->fb_upload; ?>"/>
+                                    style="width:100%" />
+                                <input type="hidden" name="imageArrayname7" value="<?php echo $subpackageInfo->fb_upload; ?>" />
                             </div>
                         </div>
                     <?php endif; ?>
@@ -223,7 +238,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                             <label><small>Image Dimensions (864 px X 315 px)</small></label>
                         </div>
                         <!-- Upload user image preview -->
-                        <div id="preview_Image"><input type="hidden" name="imageArrayname[]"/></div>
+                        <div id="preview_Image"><input type="hidden" name="imageArrayname[]" /></div>
                     </div>
 
                     <div class="form-row">
@@ -235,20 +250,22 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                                     <div class="col-md-3" id="removeSavedimg<?php echo $k; ?>">
                                         <div class="infobox info-bg">
                                             <div class="button-group" data-toggle="buttons">
-                                    <span class="float-left">
-                                        <?php
-                                        if (file_exists(SITE_ROOT . "images/subpackage/" . $imageRow)):
-                                            $filesize = filesize(SITE_ROOT . "images/subpackage/" . $imageRow);
-                                            echo 'Size : ' . getFileFormattedSize($filesize);
-                                        endif;
-                                        ?>
-                                    </span>
-                                                <a class="btn small float-right" href="javascript:void(0);" onclick="deleteSavedPackageimage(<?php echo $k; ?>);">
+                                                <span class="float-left">
+                                                    <?php
+                                                    if (file_exists(SITE_ROOT . "images/subpackage/" . $imageRow)):
+                                                        $filesize = filesize(SITE_ROOT . "images/subpackage/" . $imageRow);
+                                                        echo 'Size : ' . getFileFormattedSize($filesize);
+                                                    endif;
+                                                    ?>
+                                                </span>
+                                                <a class="btn small float-right" href="javascript:void(0);"
+                                                    onclick="deleteSavedPackageimage(<?php echo $k; ?>);">
                                                     <i class="glyph-icon icon-trash-o"></i>
                                                 </a>
                                             </div>
-                                            <img src="<?php echo IMAGE_PATH . 'subpackage/thumbnails/' . $imageRow; ?>" style="width:100%"/>
-                                            <input type="hidden" name="imageArrayname[]" value="<?php echo $imageRow; ?>"/>
+                                            <img src="<?php echo IMAGE_PATH . 'subpackage/thumbnails/' . $imageRow; ?>"
+                                                style="width:100%" />
+                                            <input type="hidden" name="imageArrayname[]" value="<?php echo $imageRow; ?>" />
                                         </div>
                                     </div>
                                 <?php endforeach;
@@ -263,8 +280,9 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                             </label>
                         </div>
                         <div class="form-input col-md-6">
-                            <input placeholder="No. Of Rooms" class="col-md-3 validate[length[0,2]]" type="text" name="number_room" id="number_room"
-                                   value="<?php echo !empty($subpackageInfo->number_room) ? $subpackageInfo->number_room : ""; ?>">
+                            <input placeholder="No. Of Rooms" class="col-md-3 validate[length[0,2]]" type="text"
+                                name="number_room" id="number_room"
+                                value="<?php echo !empty($subpackageInfo->number_room) ? $subpackageInfo->number_room : ""; ?>">
                         </div>
                     </div>
                     <div class="form-row">
@@ -274,8 +292,9 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                             </label>
                         </div>
                         <div class="form-input col-md-6">
-                            <input placeholder="Currency Type" class="col-md-3 validate[length[0,2]]" type="text" name="currency" id="currency"
-                                   value="<?php echo !empty($subpackageInfo->currency) ? $subpackageInfo->currency : ""; ?>">
+                            <input placeholder="Currency Type" class="col-md-3 validate[length[0,2]]" type="text"
+                                name="currency" id="currency"
+                                value="<?php echo !empty($subpackageInfo->currency) ? $subpackageInfo->currency : ""; ?>">
                         </div>
                     </div>
 
@@ -304,18 +323,21 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                             <div class="row">
                                 <div class="col-md-3 hide rmovprice1">
                                     <label>1 no. of pax: </label>
-                                    <input placeholder="Price" class="validate[groupRequired,length[0,7]]" type="text" name="onep_price" id="room_price1"
-                                           value="<?php echo !empty($subpackageInfo->onep_price) ? $subpackageInfo->onep_price : ''; ?>">
+                                    <input placeholder="Price" class="validate[groupRequired,length[0,7]]" type="text"
+                                        name="onep_price" id="room_price1"
+                                        value="<?php echo !empty($subpackageInfo->onep_price) ? $subpackageInfo->onep_price : ''; ?>">
                                 </div>
                                 <div class="col-md-3 hide rmovprice2">
                                     <label>2 no. of pax: </label>
-                                    <input placeholder="Price" class="validate[groupRequired,length[0,7]]" type="text" name="twop_price" id="room_price2"
-                                           value="<?php echo !empty($subpackageInfo->twop_price) ? $subpackageInfo->twop_price : ''; ?>">
+                                    <input placeholder="Price" class="validate[groupRequired,length[0,7]]" type="text"
+                                        name="twop_price" id="room_price2"
+                                        value="<?php echo !empty($subpackageInfo->twop_price) ? $subpackageInfo->twop_price : ''; ?>">
                                 </div>
                                 <div class="col-md-3 hide rmovprice3">
                                     <label>3 no. of pax: </label>
-                                    <input placeholder="Price" class="validate[groupRequired,length[0,7]]" type="text" name="threep_price" id="room_price3"
-                                           value="<?php echo !empty($subpackageInfo->threep_price) ? $subpackageInfo->threep_price : ''; ?>">
+                                    <input placeholder="Price" class="validate[groupRequired,length[0,7]]" type="text"
+                                        name="threep_price" id="room_price3"
+                                        value="<?php echo !empty($subpackageInfo->threep_price) ? $subpackageInfo->threep_price : ''; ?>">
                                 </div>
                             </div>
                         </div>
@@ -327,8 +349,9 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                             </label>
                         </div>
                         <div class="form-input col-md-6">
-                            <input placeholder="Extra Bed" class="col-md-3 validate[length[0,2]]" type="text" name="extra_bed" id="extra_bed"
-                                   value="<?php echo !empty($subpackageInfo->extra_bed) ? $subpackageInfo->extra_bed : ""; ?>">
+                            <input placeholder="Extra Bed" class="col-md-3 validate[length[0,2]]" type="text" name="extra_bed"
+                                id="extra_bed"
+                                value="<?php echo !empty($subpackageInfo->extra_bed) ? $subpackageInfo->extra_bed : ""; ?>">
                         </div>
                     </div>
 
@@ -345,8 +368,9 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                                     </label>
                                 </div>
                                 <div class="form-checkbox-radio col-md-10 form-input">
-                                    <input type="text" placeholder="Title" class="col-md-4 validate[length[0,250]]" name="fparent[<?php echo $recRow->id; ?>][]"
-                                           value="<?php echo !empty($saveRec[$recRow->id][0][0]) ? $saveRec[$recRow->id][0][0] : ''; ?>">
+                                    <input type="text" placeholder="Title" class="col-md-4 validate[length[0,250]]"
+                                        name="fparent[<?php echo $recRow->id; ?>][]"
+                                        value="<?php echo !empty($saveRec[$recRow->id][0][0]) ? $saveRec[$recRow->id][0][0] : ''; ?>">
                                     <div class="clear"></div>
                                     <?php $childRec = Features::get_all_byparnt($recRow->id);
                                     if ($childRec) {
@@ -357,7 +381,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                                                 $check = (in_array($childRow->id, $saveRec[$recRow->id][1])) ? 'checked="checked"' : '';
                                             } ?>
                                             <input type="checkbox" class="custom-radio" name="feature[<?php echo $recRow->id; ?>][]"
-                                                   value="<?php echo $childRow->id; ?>" <?php echo $check; ?>>
+                                                value="<?php echo $childRow->id; ?>" <?php echo $check; ?>>
                                             <label for=""><?php echo $childRow->title; ?></label>
                                             <?php
                                             echo ($i % 4 == 0) ? '<div class="clear"></div>' : '';
@@ -376,7 +400,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                             </label>
                             <div class="form-input">
                                 <textarea name="detail" id="detail"
-                                          class="medium-textarea"><?php echo !empty($subpackageInfo->detail) ? $subpackageInfo->detail : ""; ?></textarea>
+                                    class="medium-textarea"><?php echo !empty($subpackageInfo->detail) ? $subpackageInfo->detail : ""; ?></textarea>
                             </div>
                         </div>
                     </div>
@@ -389,7 +413,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                             Content :
                         </label>
                         <textarea name="content" id="content"
-                                  class="large-textarea"><?php echo !empty($subpackageInfo->content) ? $subpackageInfo->content : ""; ?></textarea>
+                            class="large-textarea"><?php echo !empty($subpackageInfo->content) ? $subpackageInfo->content : ""; ?></textarea>
                         <a class="btn medium bg-orange mrg5T" title="Read More" id="readMore" href="javascript:void(0);">
                             <span class="button-content">Read More</span>
                         </a>
@@ -414,30 +438,32 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                 <div class="form-row">
                     <div class="form-checkbox-radio col-md-9">
                         <a class="btn medium bg-blue" href="javascript:void(0);" onClick="toggleMetadata();">
-                        <span class="glyph-icon icon-separator float-right">
-                            <i class="glyph-icon icon-caret-down"></i>
-                        </span>
+                            <span class="glyph-icon icon-separator float-right">
+                                <i class="glyph-icon icon-caret-down"></i>
+                            </span>
                             <span class="button-content"> Metadata Info </span>
                         </a>
                     </div>
                 </div>
-                <div class="form-row <?php echo (!empty($subpackageInfo->meta_keywords) || !empty($subpackageInfo->meta_description) || !empty($subpackageInfo->meta_title)) ? '' : 'hide'; ?> metadata">
+                <div
+                    class="form-row <?php echo (!empty($subpackageInfo->meta_keywords) || !empty($subpackageInfo->meta_description) || !empty($subpackageInfo->meta_title)) ? '' : 'hide'; ?> metadata">
                     <div class="col-md-12">
                         <div class="form-input col-md-12">
-                            <input placeholder="Meta Title" class="col-md-6 validate[required]" type="text" name="meta_title" id="meta_title"
-                                   value="<?php echo !empty($subpackageInfo->meta_title) ? $subpackageInfo->meta_title : ""; ?>">
+                            <input placeholder="Meta Title" class="col-md-6 validate[required]" type="text"
+                                name="meta_title" id="meta_title"
+                                value="<?php echo !empty($subpackageInfo->meta_title) ? $subpackageInfo->meta_title : ""; ?>">
                         </div>
-                        <br/>
+                        <br />
                         <div class="form-input col-md-12">
                             <div class="row">
                                 <div class="col-md-6">
                                     <textarea placeholder="Meta Keyword" name="meta_keywords" id="meta_keywords"
-                                              class="character-keyword validate[required]"><?php echo !empty($subpackageInfo->meta_keywords) ? $subpackageInfo->meta_keywords : ""; ?></textarea>
+                                        class="character-keyword validate[required]"><?php echo !empty($subpackageInfo->meta_keywords) ? $subpackageInfo->meta_keywords : ""; ?></textarea>
                                     <div class="keyword-remaining clear input-description">250 characters left</div>
                                 </div>
                                 <div class="col-md-6">
                                     <textarea placeholder="Meta Description" name="meta_description" id="meta_description"
-                                              class="character-description validate[required]"><?php echo !empty($subpackageInfo->meta_description) ? $subpackageInfo->meta_description : ""; ?></textarea>
+                                        class="character-description validate[required]"><?php echo !empty($subpackageInfo->meta_description) ? $subpackageInfo->meta_description : ""; ?></textarea>
                                     <div class="description-remaining clear input-description">160 characters left</div>
                                 </div>
                             </div>
@@ -446,26 +472,31 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
 
                 </div>
 
-                <button btn-action='0' type="submit" name="submit" class="btn-submit btn large primary-bg text-transform-upr font-bold font-size-11 radius-all-4"
-                        id="btn-submit" title="Save">
-                <span class="button-content">
-                    Save
-                </span>
+                <button btn-action='0' type="submit" name="submit"
+                    class="btn-submit btn large primary-bg text-transform-upr font-bold font-size-11 radius-all-4"
+                    id="btn-submit" title="Save">
+                    <span class="button-content">
+                        Save
+                    </span>
                 </button>
-                <button btn-action='1' type="submit" name="submit" class="btn-submit btn large primary-bg text-transform-upr font-bold font-size-11 radius-all-4"
-                        id="btn-submit" title="Save">
-                <span class="button-content">
-                    Save & More
-                </span>
+                <button btn-action='1' type="submit" name="submit"
+                    class="btn-submit btn large primary-bg text-transform-upr font-bold font-size-11 radius-all-4"
+                    id="btn-submit" title="Save">
+                    <span class="button-content">
+                        Save & More
+                    </span>
                 </button>
-                <button btn-action='2' type="submit" name="submit" class="btn-submit btn large primary-bg text-transform-upr font-bold font-size-11 radius-all-4"
-                        id="btn-submit" title="Save">
-                <span class="button-content">
-                    Save & quit
-                </span>
+                <button btn-action='2' type="submit" name="submit"
+                    class="btn-submit btn large primary-bg text-transform-upr font-bold font-size-11 radius-all-4"
+                    id="btn-submit" title="Save">
+                    <span class="button-content">
+                        Save & quit
+                    </span>
                 </button>
-                <input myaction='0' type="hidden" name="idValue" id="idValue" value="<?php echo !empty($subpackageInfo->id) ? $subpackageInfo->id : 0; ?>"/>
-                <input type="hidden" name="type" id="type" value="<?php echo !empty($subpackageInfo->type) ? $subpackageInfo->type : $pid; ?>"/>
+                <input myaction='0' type="hidden" name="idValue" id="idValue"
+                    value="<?php echo !empty($subpackageInfo->id) ? $subpackageInfo->id : 0; ?>" />
+                <input type="hidden" name="type" id="type"
+                    value="<?php echo !empty($subpackageInfo->type) ? $subpackageInfo->type : $pid; ?>" />
             </form>
         </div>
     </div>
@@ -475,17 +506,17 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
         create_editor(base_url, editor_arr);
     </script>
 
-    <link href="<?php echo ASSETS_PATH; ?>uploadify/uploadify.css" rel="stylesheet" type="text/css"/>
+    <link href="<?php echo ASSETS_PATH; ?>uploadify/uploadify.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="<?php echo ASSETS_PATH; ?>uploadify/jquery.uploadify.min.js"></script>
     <script type="text/javascript">
         // <![CDATA[
         $(document).ready(function () {
             $('#subpackage_upload').uploadify({
-                'swf': '<?php echo ASSETS_PATH;?>uploadify/uploadify.swf',
-                'uploader': '<?php echo ASSETS_PATH;?>uploadify/uploadify.php',
-                'formData': {PROJECT: '<?php echo SITE_FOLDER;?>', targetFolder: 'images/subpackage/', thumb_width: 380, thumb_height: 478},
+                'swf': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.swf',
+                'uploader': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.php',
+                'formData': { PROJECT: '<?php echo SITE_FOLDER; ?>', targetFolder: 'images/subpackage/', thumb_width: 380, thumb_height: 478 },
                 'method': 'post',
-                'cancelImg': '<?php echo BASE_URL;?>uploadify/cancel.png',
+                'cancelImg': '<?php echo BASE_URL; ?>uploadify/cancel.png',
                 'auto': true,
                 'multi': true,
                 'hideButton': false,
@@ -501,7 +532,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                 'onUploadSuccess': function (file, data, response) {
                     $('#uploadedImageName').val('1');
                     var filename = data;
-                    $.post('<?php echo BASE_URL;?>apanel/package/uploaded_image_sub.php', {imagefile: filename}, function (msg) {
+                    $.post('<?php echo BASE_URL; ?>apanel/package/uploaded_image_sub.php', { imagefile: filename }, function (msg) {
                         $('#preview_Image').append(msg).show();
                     });
 
@@ -517,11 +548,11 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
             });
 
             $('#image_upload').uploadify({
-                'swf': '<?php echo ASSETS_PATH;?>uploadify/uploadify.swf',
-                'uploader': '<?php echo ASSETS_PATH;?>uploadify/uploadify.php',
-                'formData': {PROJECT: '<?php echo SITE_FOLDER;?>', targetFolder: 'images/subpackage/image/', thumb_width: 380, thumb_height: 478},
+                'swf': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.swf',
+                'uploader': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.php',
+                'formData': { PROJECT: '<?php echo SITE_FOLDER; ?>', targetFolder: 'images/subpackage/image/', thumb_width: 380, thumb_height: 478 },
                 'method': 'post',
-                'cancelImg': '<?php echo BASE_URL;?>uploadify/cancel.png',
+                'cancelImg': '<?php echo BASE_URL; ?>uploadify/cancel.png',
                 'auto': true,
                 'multi': false,
                 'hideButton': false,
@@ -537,7 +568,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                 'onUploadSuccess': function (file, data, response) {
                     $('#uploadedImageName').val('1');
                     var filename = data;
-                    $.post('<?php echo BASE_URL;?>apanel/package/uploaded_image_sub2.php', {imagefile: filename}, function (msg) {
+                    $.post('<?php echo BASE_URL; ?>apanel/package/uploaded_image_sub2.php', { imagefile: filename }, function (msg) {
                         $('#preview_Image2').html(msg).show();
                     });
 
@@ -553,11 +584,11 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
             });
 
             $('#menu_upload').uploadify({
-                'swf': '<?php echo ASSETS_PATH;?>uploadify/uploadify.swf',
-                'uploader': '<?php echo ASSETS_PATH;?>uploadify/uploadify.php',
-                'formData': {PROJECT: '<?php echo SITE_FOLDER;?>', targetFolder: 'images/subpackage/menuimg/', thumb_width: 380, thumb_height: 478},
+                'swf': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.swf',
+                'uploader': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.php',
+                'formData': { PROJECT: '<?php echo SITE_FOLDER; ?>', targetFolder: 'images/subpackage/menuimg/', thumb_width: 380, thumb_height: 478 },
                 'method': 'post',
-                'cancelImg': '<?php echo BASE_URL;?>uploadify/cancel.png',
+                'cancelImg': '<?php echo BASE_URL; ?>uploadify/cancel.png',
                 'auto': true,
                 'multi': false,
                 'hideButton': false,
@@ -573,7 +604,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                 'onUploadSuccess': function (file, data, response) {
                     $('#uploadedImageName').val('1');
                     var filename = data;
-                    $.post('<?php echo BASE_URL;?>apanel/package/uploaded_image_sub3.php', {imagefile: filename}, function (msg) {
+                    $.post('<?php echo BASE_URL; ?>apanel/package/uploaded_image_sub3.php', { imagefile: filename }, function (msg) {
                         $('#preview_Image3').html(msg).show();
                     });
 
@@ -589,11 +620,11 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
             });
 
             $('#header_upload').uploadify({
-                'swf': '<?php echo ASSETS_PATH;?>uploadify/uploadify.swf',
-                'uploader': '<?php echo ASSETS_PATH;?>uploadify/uploadify.php',
-                'formData': {PROJECT: '<?php echo SITE_FOLDER;?>', targetFolder: 'images/subpackage/imgheader/', thumb_width: 200, thumb_height: 200},
+                'swf': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.swf',
+                'uploader': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.php',
+                'formData': { PROJECT: '<?php echo SITE_FOLDER; ?>', targetFolder: 'images/subpackage/imgheader/', thumb_width: 200, thumb_height: 200 },
                 'method': 'post',
-                'cancelImg': '<?php echo BASE_URL;?>uploadify/cancel.png',
+                'cancelImg': '<?php echo BASE_URL; ?>uploadify/cancel.png',
                 'auto': true,
                 'multi': true,
                 'hideButton': false,
@@ -608,7 +639,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                 /* 'checkExisting' : '/uploadify/check-exists.php',*/
                 'onUploadSuccess': function (file, data, response) {
                     var filename = data;
-                    $.post('<?php echo BASE_URL;?>apanel/package/header_image2.php', {imagefile: filename}, function (msg) {
+                    $.post('<?php echo BASE_URL; ?>apanel/package/header_image2.php', { imagefile: filename }, function (msg) {
                         $('#preview_himage').html(msg).show();
                     });
                 },
@@ -623,16 +654,16 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
             });
 
             $('#fb_upload').uploadify({
-                'swf': '<?php echo ASSETS_PATH;?>uploadify/uploadify.swf',
-                'uploader': '<?php echo ASSETS_PATH;?>uploadify/uploadify.php',
+                'swf': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.swf',
+                'uploader': '<?php echo ASSETS_PATH; ?>uploadify/uploadify.php',
                 'formData': {
-                    PROJECT: '<?php echo SITE_FOLDER;?>',
+                    PROJECT: '<?php echo SITE_FOLDER; ?>',
                     targetFolder: 'images/subpackage/social/',
                     thumb_width: 200,
                     thumb_height: 200
                 },
                 'method': 'post',
-                'cancelImg': '<?php echo BASE_URL;?>uploadify/cancel.png',
+                'cancelImg': '<?php echo BASE_URL; ?>uploadify/cancel.png',
                 'auto': true,
                 'multi': false,
                 'hideButton': false,
@@ -647,7 +678,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                 'onUploadSuccess': function (file, data, response) {
                     $('#uploadedImageName').val('1');
                     var filename = data;
-                    $.post('<?php echo BASE_URL;?>apanel/package/uploaded_fb_upload.php', {imagefile: filename}, function (msg) {
+                    $.post('<?php echo BASE_URL; ?>apanel/package/uploaded_fb_upload.php', { imagefile: filename }, function (msg) {
                         $('#preview_Image3').append(msg).show();
                     });
 

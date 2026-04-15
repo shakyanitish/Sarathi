@@ -397,30 +397,6 @@ if(defined('SUBPACKAGE_PAGE') and isset($_REQUEST['slug'])) {
         }
         $resubpkgDetail.='</div></div></div></section>';
 
-        // Related testimonial
-		// $tstRow = Testimonial::get_by_rand($subpkgRec->id);
-		// if(!empty($tstRow)) {
-		// 	$resubpkgDetail.='<br /><!-- Quote | START -->
-        //     <div class="section  quote fade">
-        //         <div class="center">
-        //         	<div class="col-1">
-        //                 <div class="thumb"><img src="'.IMAGE_PATH.'testimonial/'.$tstRow->image.'" alt="'.$tstRow->name.'"></div>
-        //                 <h5><em>'.strip_tags($tstRow->content).'</em></h5>
-        //                 <p><span><strong>'.$tstRow->name.', '.$tstRow->country.'</strong> (Via : '.$tstRow->via_type.')</span></p>
-        //             </div>
-        //         </div>
-        //     </div>
-        // //     <!-- Quote | END -->';
-
-		// }
-
-        // Room Price
-        // $resubpkgDetail.='<div class="section subscribe fade">
-		// 	<div class="center">
-		//         <h3>Stay from <strong>$ '.$subpkgRec->onep_price.' per night</strong></h3>
-		//         <a class="button" href="/booking?room-type='.$subpkgRec->be_room_type.'">Book your room <i class="icon ion-ios-arrow-right"></i></a>
-		//     </div>
-		// </div>';	
 
 	}
 }
