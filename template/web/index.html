@@ -63,6 +63,39 @@
         .carousel img:not(:first-child) {
             display: none;
         }
+
+        .fb-preview-thumb {
+            position: relative;
+        }
+
+        .fb-preview-remove {
+            position: absolute;
+            top: 6px;
+            right: 6px;
+            width: 28px;
+            height: 28px;
+            border: none;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.72);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 0;
+            transition: background 0.2s ease;
+            z-index: 2;
+        }
+
+        .fb-preview-remove:hover {
+            background: rgba(220, 38, 38, 0.92);
+        }
+
+        .fb-preview-remove svg {
+            width: 15px;
+            height: 15px;
+            pointer-events: none;
+        }
     </style>
     <!-- start head script -->
     <script type="text/javascript" src="../../js/be-script.js"></script>
@@ -422,12 +455,14 @@
         <!-- Feedback Modal | END -->
 
         <script>
-            (function () {
+            $(document).ready(function () {
                 var modal = document.getElementById('feedbackModal');
                 var openBtn = document.getElementById('openFeedback');
                 var closeBtn = modal ? modal.querySelector('.feedback-modal-close') : null;
                 var form = document.getElementById('feedbackForm');
                 var statusMsg = document.getElementById('fb-status-msg');
+                var feedbackSuccessMsg = 'Thank You for Your Feedback! We appreciate you taking the time to share your experience with us.';
+                var feedbackFallbackMsg = 'Unable to submit feedback right now. Please try again later.';
 
                 if (!modal || !openBtn) return;
 
@@ -440,9 +475,13 @@
                 function closeModal() {
                     modal.classList.remove('active');
                     document.body.style.overflow = '';
-                    form.reset();
-                    statusMsg.innerHTML = '';
-                    statusMsg.className = '';
+                    if (form) form.reset();
+                    selectedFiles = [];
+                    if (uploadInput) uploadInput.value = '';
+                    if (statusMsg) {
+                        statusMsg.innerHTML = '';
+                        statusMsg.className = '';
+                    }
                     // Clear image previews
                     var grid = document.getElementById('fbPreviewGrid');
                     var placeholder = document.getElementById('fbUploadPlaceholder');
@@ -456,72 +495,122 @@
                     if (e.target === modal) closeModal();
                 });
 
+                // Custom rule for star rating
+                $.validator.addMethod("starRatingSelected", function () {
+                    return $('input[name="rating"]:checked').length > 0;
+                }, "Please select a rating");
+
                 if (form) {
-                    form.addEventListener('submit', function (e) {
-                        e.preventDefault();
-                        var btn = form.querySelector('.fb-submit-btn');
-                        btn.classList.add('loading');
+                    $(form).validate({
+                        rules: {
+                            name: { required: true, minlength: 2 },
+                            email: { required: true, email: true },
+                            rating: { starRatingSelected: true },
+                            message: { required: true, minlength: 10 }
+                        },
+                        messages: {
+                            name: { required: "Please enter your full name", minlength: "Name must be at least 2 characters" },
+                            email: { required: "Please enter your email address", email: "Please enter a valid email address" },
+                            rating: { starRatingSelected: "Please select a star rating" },
+                            message: { required: "Please enter your message", minlength: "Message must be at least 10 characters" }
+                        },
+                        submitHandler: function (form) {
+                            var btn = form.querySelector('.fb-submit-btn');
+                            var $btn = $(btn);
+                            $btn.addClass('loading');
 
-                        var formData = new FormData(form);
+                            var formData = new FormData(form);
 
-                        fetch('testimonial_submit.php', {
-                            method: 'POST',
-                            body: formData
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            btn.classList.remove('loading');
-                            if (data.action === 'success') {
-                                statusMsg.innerHTML = data.message;
-                                statusMsg.className = 'fb-success-msg';
-                                setTimeout(closeModal, 2500);
-                            } else {
-                                statusMsg.innerHTML = data.message;
+                            fetch('testimonial_submit.php', {
+                                method: 'POST',
+                                body: formData
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                $btn.removeClass('loading');
+                                if (data.action === 'success') {
+                                    statusMsg.innerHTML = data.message || feedbackSuccessMsg;
+                                    statusMsg.className = 'fb-success-msg';
+                                    setTimeout(closeModal, 2500);
+                                } else {
+                                    statusMsg.innerHTML = data.message || feedbackFallbackMsg;
+                                    statusMsg.className = 'fb-error-msg';
+                                }
+                            })
+                            .catch(error => {
+                                $btn.removeClass('loading');
+                                statusMsg.innerHTML = 'An error occurred. Please try again.';
                                 statusMsg.className = 'fb-error-msg';
-                            }
-                        })
-                        .catch(error => {
-                            btn.classList.remove('loading');
-                            statusMsg.innerHTML = 'An error occurred. Please try again.';
-                            statusMsg.className = 'fb-error-msg';
-                            console.error('Error:', error);
-                        });
+                                console.error('Error:', error);
+                            });
+                            return false; // Prevent traditional submit
+                        }
                     });
                 }
+
                 var uploadInput = document.getElementById('fb-images');
                 var uploadArea = document.getElementById('fbUploadArea');
                 var previewGrid = document.getElementById('fbPreviewGrid');
                 var uploadPlaceholder = document.getElementById('fbUploadPlaceholder');
+                var selectedFiles = [];
 
-                function renderPreviews(files) {
+                function syncInputFiles(files) {
+                    if (!uploadInput) return;
+                    var dataTransfer = new DataTransfer();
+                    for (var i = 0; i < files.length; i++) {
+                        dataTransfer.items.add(files[i]);
+                    }
+                    uploadInput.files = dataTransfer.files;
+                }
+
+                function updateSelectedFiles(files) {
+                    selectedFiles = Array.prototype.slice.call(files || [], 0, 5);
+                    syncInputFiles(selectedFiles);
+                    renderPreviews();
+                }
+
+                function renderPreviews() {
+                    if (!previewGrid) return;
                     previewGrid.innerHTML = '';
-                    var count = Math.min(files.length, 5);
+                    var count = selectedFiles.length;
                     if (count === 0) {
-                        uploadPlaceholder.style.display = 'flex';
+                        if (uploadPlaceholder) uploadPlaceholder.style.display = 'flex';
                         return;
                     }
-                    uploadPlaceholder.style.display = 'none';
+                    if (uploadPlaceholder) uploadPlaceholder.style.display = 'none';
                     for (var i = 0; i < count; i++) {
-                        (function (file) {
+                        (function (file, index) {
                             var reader = new FileReader();
                             reader.onload = function (e) {
                                 var thumb = document.createElement('div');
                                 thumb.className = 'fb-preview-thumb';
                                 thumb.style.backgroundImage = 'url(' + e.target.result + ')';
+
+                                var removeBtn = document.createElement('button');
+                                removeBtn.type = 'button';
+                                removeBtn.className = 'fb-preview-remove';
+                                removeBtn.setAttribute('aria-label', 'Remove image');
+                                removeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 6V4h8v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+                                removeBtn.addEventListener('click', function () {
+                                    selectedFiles.splice(index, 1);
+                                    syncInputFiles(selectedFiles);
+                                    renderPreviews();
+                                });
+
+                                thumb.appendChild(removeBtn);
                                 previewGrid.appendChild(thumb);
                             };
                             reader.readAsDataURL(file);
-                        })(files[i]);
+                        })(selectedFiles[i], i);
                     }
                 }
 
                 if (uploadInput) {
                     uploadInput.addEventListener('change', function () {
-                        renderPreviews(this.files);
+                        updateSelectedFiles(this.files);
                     });
                 }
 
-                // Drag and drop support
                 if (uploadArea) {
                     uploadArea.addEventListener('dragover', function (e) {
                         e.preventDefault();
@@ -535,62 +624,13 @@
                         uploadArea.classList.remove('drag-over');
                         var dt = e.dataTransfer;
                         if (dt && dt.files.length) {
-                            uploadInput.files = dt.files;
-                            renderPreviews(dt.files);
+                            updateSelectedFiles(dt.files);
                         }
                     });
                 }
-
-            })();
-        </script>
-        <script>
-            $(document).ready(function () {
-
-                // Custom rule for star rating
-                $.validator.addMethod("starRatingSelected", function () {
-                    return $('input[name="rating"]:checked').length > 0;
-                }, "Please select a rating");
-
-            $("#feedbackForm").validate({
-                rules: {
-                name: {
-                required: true,
-            minlength: 2
-                    },
-            email: {
-                required: true,
-            email: true
-                    },
-            rating: {
-                starRatingSelected: true
-                    },
-            message: {
-                required: true,
-            minlength: 10
-                    }
-                },
-
-            messages: {
-                name: {
-                required: "Please enter your full name",
-            minlength: "Name must be at least 2 characters"
-                    },
-            email: {
-                required: "Please enter your email address",
-            email: "Please enter a valid email address"
-                    },
-            rating: {
-                starRatingSelected: "Please select a star rating"
-                    },
-            message: {
-                required: "Please enter your message",
-            minlength: "Message must be at least 10 characters"
-                    }
-                },
             });
-
-        });
         </script>
+
 </body>
 
 </html>
