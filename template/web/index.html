@@ -386,250 +386,251 @@
 
 
 
-        <!-- Feedback Modal | START -->
-        <div id="feedbackModal" class="feedback-modal-overlay">
-            <div class="feedback-modal-card">
-                <button class="feedback-modal-close" aria-label="Close modal">&times;</button>
-                <div class="feedback-modal-body">
-                    <div class="feedback-form-header">
-                        <h3>Share Your Experience</h3>
-                        <p>Tell us what you loved or how we can improve.</p>
-                    </div>
-                    <form id="feedbackForm" class="feedback-submission-form">
-                        <div class="fb-form-row">
-                            <div class="fb-form-group">
-                                <label for="fb-name">Full Name*</label>
-                                <input type="text" id="fb-name" name="name" placeholder="">
-                            </div>
-                            <div class="fb-form-group">
-                                <label for="fb-email">Email Address*</label>
-                                <input type="email" id="fb-email" name="email" placeholder="">
-                            </div>
-                        </div>
-
-                        <div class="fb-form-group">
-                            <label>Your Rating*</label>
-                            <div class="fb-star-rating">
-                                <input type="radio" name="rating" id="fb-star-5" value="5">
-                                <label for="fb-star-5" title="5 stars"></label>
-                                <input type="radio" name="rating" id="fb-star-4" value="4">
-                                <label for="fb-star-4" title="4 stars"></label>
-                                <input type="radio" name="rating" id="fb-star-3" value="3">
-                                <label for="fb-star-3" title="3 stars"></label>
-                                <input type="radio" name="rating" id="fb-star-2" value="2">
-                                <label for="fb-star-2" title="2 stars"></label>
-                                <input type="radio" name="rating" id="fb-star-1" value="1">
-                                <label for="fb-star-1" title="1 star"></label>
-                            </div>
-                        </div>
-
-                        <div class="fb-form-group">
-                            <label for="fb-message">Message*</label>
-                            <textarea id="fb-message" name="message" rows="4"
-                                placeholder="How was your stay? Any specific highlights?"></textarea>
-                            <label for="fb-images">Upload Photos <span class="fb-optional">(optional)</span></label>
-                            <div class="fb-upload-area" id="fbUploadArea">
-                                <input type="file" id="fb-images" name="images[]" accept="image/*" multiple>
-                                <div class="fb-upload-placeholder" id="fbUploadPlaceholder">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none"
-                                        viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
-                                            d="M4 16l4-4 4 4 4-6 4 6M4 20h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                    </svg>
-                                    <p>Click or drag &amp; drop images here</p>
-                                    <span>JPG, PNG, WEBP</span>
-                                </div>
-                                <div class="fb-preview-grid" id="fbPreviewGrid"></div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="fb-submit-btn">
-                            <span>Submit Feedback</span>
-                            <div class="fb-btn-loader"></div>
-                        </button>
-                        <div id="fb-status-msg"></div>
-                    </form>
-                </div>
+<!-- Feedback Modal | START -->
+<div id="feedbackModal" class="feedback-modal-overlay">
+    <div class="feedback-modal-card">
+        <button class="feedback-modal-close" aria-label="Close modal">&times;</button>
+        <div class="feedback-modal-body">
+            <div class="feedback-form-header">
+                <h3>Share Your Experience</h3>
+                <p>Tell us what you loved or how we can improve.</p>
             </div>
+            <form id="feedbackForm" class="feedback-submission-form">
+                <div class="fb-form-row">
+                    <div class="fb-form-group">
+                        <label for="fb-name">Full Name*</label>
+                        <input type="text" id="fb-name" name="name" placeholder="">
+                    </div>
+                    <div class="fb-form-group">
+                        <label for="fb-email">Email Address*</label>
+                        <input type="email" id="fb-email" name="email" placeholder="">
+                    </div>
+                </div>
+
+                <div class="fb-form-group">
+                    <label>Your Rating*</label>
+                    <div class="fb-star-rating">
+                        <input type="radio" name="rating" id="fb-star-5" value="5">
+                        <label for="fb-star-5" title="5 stars"></label>
+                        <input type="radio" name="rating" id="fb-star-4" value="4">
+                        <label for="fb-star-4" title="4 stars"></label>
+                        <input type="radio" name="rating" id="fb-star-3" value="3">
+                        <label for="fb-star-3" title="3 stars"></label>
+                        <input type="radio" name="rating" id="fb-star-2" value="2">
+                        <label for="fb-star-2" title="2 stars"></label>
+                        <input type="radio" name="rating" id="fb-star-1" value="1">
+                        <label for="fb-star-1" title="1 star"></label>
+                    </div>
+                </div>
+
+                <div class="fb-form-group">
+                    <label for="fb-message">Message*</label>
+                    <textarea id="fb-message" name="message" rows="4"
+                        placeholder="How was your stay? Any specific highlights?"></textarea>
+                    <label for="fb-images">Upload Photos <span class="fb-optional">(optional)</span></label>
+                    <div class="fb-upload-area" id="fbUploadArea">
+                        <input type="file" id="fb-images" name="images[]" accept="image/*" multiple>
+                        <div class="fb-upload-placeholder" id="fbUploadPlaceholder">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                    d="M4 16l4-4 4 4 4-6 4 6M4 20h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                            </svg>
+                            <p>Click or drag &amp; drop images here</p>
+                            <span>JPG, PNG, WEBP</span>
+                        </div>
+                        <div class="fb-preview-grid" id="fbPreviewGrid"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="fb-submit-btn">
+                    <span>Submit Feedback</span>
+                    <div class="fb-btn-loader"></div>
+                </button>
+                <div id="fb-success-msg" style="display:none;margin-top:12px;padding:12px;background:#ecfdf5;color:#065f46;border:1px solid #6ee7b7;border-radius:8px;font-size:14px;text-align:center;"></div>
+            </form>
         </div>
-        <!-- Feedback Modal | END -->
+    </div>
+</div>
+<!-- Feedback Modal | END -->
 
-        <script>
-            $(document).ready(function () {
-                var modal = document.getElementById('feedbackModal');
-                var openBtn = document.getElementById('openFeedback');
-                var closeBtn = modal ? modal.querySelector('.feedback-modal-close') : null;
-                var form = document.getElementById('feedbackForm');
-                var statusMsg = document.getElementById('fb-status-msg');
-                var feedbackSuccessMsg = 'Thank You for Your Feedback! We appreciate you taking the time to share your experience with us.';
-                var feedbackFallbackMsg = 'Unable to submit feedback right now. Please try again later.';
+<script>
+    $(document).ready(function () {
+        var modal = document.getElementById('feedbackModal');
+        var openBtn = document.getElementById('openFeedback');
+        var closeBtn = modal ? modal.querySelector('.feedback-modal-close') : null;
+        var form = document.getElementById('feedbackForm');
+        var feedbackSuccessMsg = 'Thank You for Your Feedback! We appreciate you taking the time to share your experience with us.';
+        var feedbackFallbackMsg = 'Unable to submit feedback right now. Please try again later.';
 
-                if (!modal || !openBtn) return;
+        if (!modal || !openBtn) return;
 
-                openBtn.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    modal.classList.add('active');
-                    document.body.style.overflow = 'hidden';
-                });
+        openBtn.addEventListener('click', function (e) {
+            e.preventDefault();
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
 
-                function closeModal() {
-                    modal.classList.remove('active');
-                    document.body.style.overflow = '';
-                    if (form) form.reset();
-                    selectedFiles = [];
-                    if (uploadInput) uploadInput.value = '';
-                    if (statusMsg) {
-                        statusMsg.innerHTML = '';
-                        statusMsg.className = '';
-                    }
-                    // Clear image previews
-                    var grid = document.getElementById('fbPreviewGrid');
-                    var placeholder = document.getElementById('fbUploadPlaceholder');
-                    if (grid) grid.innerHTML = '';
-                    if (placeholder) placeholder.style.display = 'flex';
-                }
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            if (form) {
+                form.reset();
+                $(form).validate().resetForm();
+            }
+            selectedFiles = [];
+            if (uploadInput) uploadInput.value = '';
+            // Clear image previews
+            var grid = document.getElementById('fbPreviewGrid');
+            var placeholder = document.getElementById('fbUploadPlaceholder');
+            if (grid) grid.innerHTML = '';
+            if (placeholder) placeholder.style.display = 'flex';
+            $('#fb-success-msg').hide().text('');
+        }
 
-                if (closeBtn) closeBtn.addEventListener('click', closeModal);
+        if (closeBtn) closeBtn.addEventListener('click', closeModal);
 
-                modal.addEventListener('click', function (e) {
-                    if (e.target === modal) closeModal();
-                });
+        modal.addEventListener('click', function (e) {
+            if (e.target === modal) closeModal();
+        });
 
-                // Custom rule for star rating
-                $.validator.addMethod("starRatingSelected", function () {
-                    return $('input[name="rating"]:checked').length > 0;
-                }, "Please select a rating");
+        // Custom rule for star rating
+        $.validator.addMethod("starRatingSelected", function () {
+            return $('input[name="rating"]:checked').length > 0;
+        }, "Please select a rating");
 
-                if (form) {
-                    $(form).validate({
-                        rules: {
-                            name: { required: true, minlength: 2 },
-                            email: { required: true, email: true },
-                            rating: { starRatingSelected: true },
-                            message: { required: true, minlength: 10 }
-                        },
-                        messages: {
-                            name: { required: "Please enter your full name", minlength: "Name must be at least 2 characters" },
-                            email: { required: "Please enter your email address", email: "Please enter a valid email address" },
-                            rating: { starRatingSelected: "Please select a star rating" },
-                            message: { required: "Please enter your message", minlength: "Message must be at least 10 characters" }
-                        },
-                        submitHandler: function (form) {
-                            var btn = form.querySelector('.fb-submit-btn');
-                            var $btn = $(btn);
-                            $btn.addClass('loading');
+        if (form) {
+            $(form).validate({
+                rules: {
+                    name: { required: true, minlength: 2 },
+                    email: { required: true, email: true },
+                    rating: { starRatingSelected: true },
+                    message: { required: true, minlength: 10 }
+                },
+                messages: {
+                    name: { required: "Please enter your full name", minlength: "Name must be at least 2 characters" },
+                    email: { required: "Please enter your email address", email: "Please enter a valid email address" },
+                    rating: { starRatingSelected: "Please select a star rating" },
+                    message: { required: "Please enter your message", minlength: "Message must be at least 10 characters" }
+                },
+                submitHandler: function (form) {
+                    var validator = this;
+                    var btn = form.querySelector('.fb-submit-btn');
+                    var $btn = $(btn);
+                    $btn.addClass('loading');
 
-                            var formData = new FormData(form);
+                    var formData = new FormData(form);
 
-                            fetch('testimonial_submit.php', {
-                                method: 'POST',
-                                body: formData
-                            })
-                            .then(response => response.json())
-                            .then(data => {
-                                $btn.removeClass('loading');
-                                if (data.action === 'success') {
-                                    statusMsg.innerHTML = data.message || feedbackSuccessMsg;
-                                    statusMsg.className = 'fb-success-msg';
-                                    setTimeout(closeModal, 2500);
-                                } else {
-                                    statusMsg.innerHTML = data.message || feedbackFallbackMsg;
-                                    statusMsg.className = 'fb-error-msg';
-                                }
-                            })
-                            .catch(error => {
-                                $btn.removeClass('loading');
-                                statusMsg.innerHTML = 'An error occurred. Please try again.';
-                                statusMsg.className = 'fb-error-msg';
-                                console.error('Error:', error);
+                    fetch('testimonial_submit.php', {
+                        method: 'POST',
+                        body: formData
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        $btn.removeClass('loading');
+                        if (data.action === 'success') {
+                            $('#fb-success-msg').text(data.message || feedbackSuccessMsg).show();
+                            setTimeout(closeModal, 2500);
+                        } else {
+                            validator.showErrors({
+                                message: data.message || feedbackFallbackMsg
                             });
-                            return false; // Prevent traditional submit
                         }
+                    })
+                    .catch(error => {
+                        $btn.removeClass('loading');
+                        validator.showErrors({
+                            message: 'An error occurred. Please try again.'
+                        });
+                        console.error('Error:', error);
                     });
-                }
-
-                var uploadInput = document.getElementById('fb-images');
-                var uploadArea = document.getElementById('fbUploadArea');
-                var previewGrid = document.getElementById('fbPreviewGrid');
-                var uploadPlaceholder = document.getElementById('fbUploadPlaceholder');
-                var selectedFiles = [];
-
-                function syncInputFiles(files) {
-                    if (!uploadInput) return;
-                    var dataTransfer = new DataTransfer();
-                    for (var i = 0; i < files.length; i++) {
-                        dataTransfer.items.add(files[i]);
-                    }
-                    uploadInput.files = dataTransfer.files;
-                }
-
-                function updateSelectedFiles(files) {
-                    selectedFiles = Array.prototype.slice.call(files || [], 0, 5);
-                    syncInputFiles(selectedFiles);
-                    renderPreviews();
-                }
-
-                function renderPreviews() {
-                    if (!previewGrid) return;
-                    previewGrid.innerHTML = '';
-                    var count = selectedFiles.length;
-                    if (count === 0) {
-                        if (uploadPlaceholder) uploadPlaceholder.style.display = 'flex';
-                        return;
-                    }
-                    if (uploadPlaceholder) uploadPlaceholder.style.display = 'none';
-                    for (var i = 0; i < count; i++) {
-                        (function (file, index) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                var thumb = document.createElement('div');
-                                thumb.className = 'fb-preview-thumb';
-                                thumb.style.backgroundImage = 'url(' + e.target.result + ')';
-
-                                var removeBtn = document.createElement('button');
-                                removeBtn.type = 'button';
-                                removeBtn.className = 'fb-preview-remove';
-                                removeBtn.setAttribute('aria-label', 'Remove image');
-                                removeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 6V4h8v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
-                                removeBtn.addEventListener('click', function () {
-                                    selectedFiles.splice(index, 1);
-                                    syncInputFiles(selectedFiles);
-                                    renderPreviews();
-                                });
-
-                                thumb.appendChild(removeBtn);
-                                previewGrid.appendChild(thumb);
-                            };
-                            reader.readAsDataURL(file);
-                        })(selectedFiles[i], i);
-                    }
-                }
-
-                if (uploadInput) {
-                    uploadInput.addEventListener('change', function () {
-                        updateSelectedFiles(this.files);
-                    });
-                }
-
-                if (uploadArea) {
-                    uploadArea.addEventListener('dragover', function (e) {
-                        e.preventDefault();
-                        uploadArea.classList.add('drag-over');
-                    });
-                    uploadArea.addEventListener('dragleave', function () {
-                        uploadArea.classList.remove('drag-over');
-                    });
-                    uploadArea.addEventListener('drop', function (e) {
-                        e.preventDefault();
-                        uploadArea.classList.remove('drag-over');
-                        var dt = e.dataTransfer;
-                        if (dt && dt.files.length) {
-                            updateSelectedFiles(dt.files);
-                        }
-                    });
+                    return false; // Prevent traditional submit
                 }
             });
-        </script>
+        }
+
+        var uploadInput = document.getElementById('fb-images');
+        var uploadArea = document.getElementById('fbUploadArea');
+        var previewGrid = document.getElementById('fbPreviewGrid');
+        var uploadPlaceholder = document.getElementById('fbUploadPlaceholder');
+        var selectedFiles = [];
+
+        function syncInputFiles(files) {
+            if (!uploadInput) return;
+            var dataTransfer = new DataTransfer();
+            for (var i = 0; i < files.length; i++) {
+                dataTransfer.items.add(files[i]);
+            }
+            uploadInput.files = dataTransfer.files;
+        }
+
+        function updateSelectedFiles(files) {
+            selectedFiles = Array.prototype.slice.call(files || [], 0, 5);
+            syncInputFiles(selectedFiles);
+            renderPreviews();
+        }
+
+        function renderPreviews() {
+            if (!previewGrid) return;
+            previewGrid.innerHTML = '';
+            var count = selectedFiles.length;
+            if (count === 0) {
+                if (uploadPlaceholder) uploadPlaceholder.style.display = 'flex';
+                return;
+            }
+            if (uploadPlaceholder) uploadPlaceholder.style.display = 'none';
+            for (var i = 0; i < count; i++) {
+                (function (file, index) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        var thumb = document.createElement('div');
+                        thumb.className = 'fb-preview-thumb';
+                        thumb.style.backgroundImage = 'url(' + e.target.result + ')';
+
+                        var removeBtn = document.createElement('button');
+                        removeBtn.type = 'button';
+                        removeBtn.className = 'fb-preview-remove';
+                        removeBtn.setAttribute('aria-label', 'Remove image');
+                        removeBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M8 6V4h8v2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M19 6l-1 14H6L5 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M10 11v6M14 11v6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+                        removeBtn.addEventListener('click', function () {
+                            selectedFiles.splice(index, 1);
+                            syncInputFiles(selectedFiles);
+                            renderPreviews();
+                        });
+
+                        thumb.appendChild(removeBtn);
+                        previewGrid.appendChild(thumb);
+                    };
+                    reader.readAsDataURL(file);
+                })(selectedFiles[i], i);
+            }
+        }
+
+        if (uploadInput) {
+            uploadInput.addEventListener('change', function () {
+                updateSelectedFiles(this.files);
+            });
+        }
+
+        if (uploadArea) {
+            uploadArea.addEventListener('dragover', function (e) {
+                e.preventDefault();
+                uploadArea.classList.add('drag-over');
+            });
+            uploadArea.addEventListener('dragleave', function () {
+                uploadArea.classList.remove('drag-over');
+            });
+            uploadArea.addEventListener('drop', function (e) {
+                e.preventDefault();
+                uploadArea.classList.remove('drag-over');
+                var dt = e.dataTransfer;
+                if (dt && dt.files.length) {
+                    updateSelectedFiles(dt.files);
+                }
+            });
+        }
+    });
+</script>
 
 </body>
 
