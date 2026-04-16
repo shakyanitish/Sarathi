@@ -97,8 +97,10 @@
 		case "toggleStatus":
 			$id = $_REQUEST['id'];
 			$record = Article::find_by_id($id);
-			$record->status = ($record->status == 1) ? 0 : 1 ;
-			$record->save();
+			if($record){
+				$record->status = ($record->status == 1) ? 0 : 1 ;
+				$record->save();
+			}
 			echo "";
 		break;
 			
@@ -108,8 +110,10 @@
 			$return = "0";
 			for($i=1; $i<count($allid); $i++){
 				$record = Article::find_by_id($allid[$i]);
-				$record->status = ($record->status == 1) ? 0 : 1 ;
-				$record->save();
+				if($record){
+					$record->status = ($record->status == 1) ? 0 : 1 ;
+					$record->save();
+				}
 			}
 			echo "";
 		break;

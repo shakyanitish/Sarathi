@@ -65,7 +65,7 @@
         }
     </style>
     <!-- start head script -->
-    <!-- <script type="text/javascript" src="../../js/be-script.js"></script> -->
+    <script type="text/javascript" src="../../js/be-script.js"></script>
     <!-- end head script -->
     <!--Google Search Console-->
     <meta name="google-site-verification" content="i2lXR2PrJd-EHv4Fqt05QG-KiKNCOBai17VUi8fxH64" />
@@ -107,11 +107,6 @@
 
             <!-- Location module -->
             <jcms:module:home-about/>
-
-            <!-- Gallery module -->
-            <jcms:module:galleryList/>
-
-
 
             <!-- Article module -->
             <jcms:module:homepage-list/>
@@ -370,19 +365,19 @@
                     <form id="feedbackForm" class="feedback-submission-form">
                         <div class="fb-form-row">
                             <div class="fb-form-group">
-                                <label for="fb-name">Full Name</label>
-                                <input type="text" id="fb-name" name="name" placeholder="John Doe" required>
+                                <label for="fb-name">Full Name*</label>
+                                <input type="text" id="fb-name" name="name" placeholder="">
                             </div>
                             <div class="fb-form-group">
-                                <label for="fb-email">Email Address</label>
-                                <input type="email" id="fb-email" name="email" placeholder="john@example.com" required>
+                                <label for="fb-email">Email Address*</label>
+                                <input type="email" id="fb-email" name="email" placeholder="">
                             </div>
                         </div>
 
                         <div class="fb-form-group">
-                            <label>Your Rating</label>
+                            <label>Your Rating*</label>
                             <div class="fb-star-rating">
-                                <input type="radio" name="rating" id="fb-star-5" value="5" required>
+                                <input type="radio" name="rating" id="fb-star-5" value="5">
                                 <label for="fb-star-5" title="5 stars"></label>
                                 <input type="radio" name="rating" id="fb-star-4" value="4">
                                 <label for="fb-star-4" title="4 stars"></label>
@@ -396,9 +391,9 @@
                         </div>
 
                         <div class="fb-form-group">
-                            <label for="fb-message">Message</label>
+                            <label for="fb-message">Message*</label>
                             <textarea id="fb-message" name="message" rows="4"
-                                placeholder="How was your stay? Any specific highlights?" required></textarea>
+                                placeholder="How was your stay? Any specific highlights?"></textarea>
                             <label for="fb-images">Upload Photos <span class="fb-optional">(optional)</span></label>
                             <div class="fb-upload-area" id="fbUploadArea">
                                 <input type="file" id="fb-images" name="images[]" accept="image/*" multiple>
@@ -409,7 +404,7 @@
                                             d="M4 16l4-4 4 4 4-6 4 6M4 20h16a2 2 0 002-2V6a2 2 0 00-2-2H4a2 2 0 00-2 2v12a2 2 0 002 2z" />
                                     </svg>
                                     <p>Click or drag &amp; drop images here</p>
-                                    <span>JPG, PNG, WEBP &mdash; up to 5 files</span>
+                                    <span>JPG, PNG, WEBP</span>
                                 </div>
                                 <div class="fb-preview-grid" id="fbPreviewGrid"></div>
                             </div>
@@ -547,6 +542,54 @@
                 }
 
             })();
+        </script>
+        <script>
+            $(document).ready(function () {
+
+                // Custom rule for star rating
+                $.validator.addMethod("starRatingSelected", function () {
+                    return $('input[name="rating"]:checked').length > 0;
+                }, "Please select a rating");
+
+            $("#feedbackForm").validate({
+                rules: {
+                name: {
+                required: true,
+            minlength: 2
+                    },
+            email: {
+                required: true,
+            email: true
+                    },
+            rating: {
+                starRatingSelected: true
+                    },
+            message: {
+                required: true,
+            minlength: 10
+                    }
+                },
+
+            messages: {
+                name: {
+                required: "Please enter your full name",
+            minlength: "Name must be at least 2 characters"
+                    },
+            email: {
+                required: "Please enter your email address",
+            email: "Please enter a valid email address"
+                    },
+            rating: {
+                starRatingSelected: "Please select a star rating"
+                    },
+            message: {
+                required: "Please enter your message",
+            minlength: "Message must be at least 10 characters"
+                    }
+                },
+            });
+
+        });
         </script>
 </body>
 

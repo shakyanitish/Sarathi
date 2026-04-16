@@ -24,7 +24,7 @@ List Social Links
         <thead>
             <tr>
                <th class="text-center">S.No.</th>
-               <th>Icon</th>
+                <th class="text-center">Title</th>      
                <th class="text-center">Link</th>      
                <th class="text-center"><?php echo $GLOBALS['basic']['action'];?></th>
             </tr>
@@ -34,14 +34,9 @@ List Social Links
             <?php $records = SocialNetworking::find_by_sql("SELECT * FROM ".$moduleTablename." ORDER BY sortorder ASC "); 
                   foreach($records as $record): ?>    
             <tr id="<?php echo $record->id;?>">
-                <td class="text-center"><?php echo $record->sortorder;?></td>                
-                <td>
-                    <div class="col-md-1">                                                                                    
-                        <a href="javascript:void(0);" onClick="editRecord(<?php echo $record->id;?>);" class="loadingbar-demo btn small" title="<?php echo $record->title;?>">
-                            <img src="<?php echo IMAGE_PATH;?>social/<?php echo $record->image;?>" alt="<?php echo $record->title;?>" width="25">
-                        </a>
-                    </div> 
-                </td>                              
+                <td class="text-center"><?php echo $record->sortorder;?></td>        
+                <td class="text-center"><?php echo $record->title;?></td>          
+                             
                 <td><?php echo !empty($record->linksrc)?$record->linksrc:'';?></td>
                 <td class="text-center">
                     <?php   
@@ -108,6 +103,9 @@ endif;
                 </div>                
                 <div class="form-input col-md-20">
                     <input placeholder="Social Link Icon" class="col-md-4 validate[required,length[0,200]]" type="text" name="icon" id="icon" value="<?php echo !empty($socialInfo->icon)?$socialInfo->icon:"";?>">
+                        <a href="https://fontawesome.com/icons" target="_blank" style="margin-left:10px;">
+                            View Icons
+                        </a>
                 </div>                
             </div>
 

@@ -2,7 +2,7 @@
 class Features extends DatabaseObject {
 
 	protected static $table_name = "tbl_features";
-	protected static $db_fields = array('id', 'title', 'parentId', 'image', 'brief', 'status', 'sortorder', 'added_date');
+	protected static $db_fields = array('id', 'title', 'parentId', 'image', 'brief', 'status', 'sortorder', 'added_date','icon');
 	
 	var $id;
 	var $title;
@@ -12,6 +12,7 @@ class Features extends DatabaseObject {
 	var $status;
 	var $sortorder;
 	var $added_date;
+	var $icon;
 
 	//Find all by parent id the current database table.
 	static function find_all_byparnt($parentId=0){

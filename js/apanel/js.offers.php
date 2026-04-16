@@ -142,6 +142,25 @@ $(document).ready(function(){
 	$('#linkPage').change(function(){
 		$('#linksrc').val($(this).val());
 	});
+
+	function toggleExclusiveFields() {
+		var exclusiveType = $('input[name="exclusive"]:checked').val();
+		if (exclusiveType == '1') {
+			$('.exclusive-package-field').hide();
+			$('.exclusive-dim-exclusive').show();
+			$('.exclusive-dim-package').hide();
+		} else {
+			$('.exclusive-package-field').show();
+			$('.exclusive-dim-exclusive').hide();
+			$('.exclusive-dim-package').show();
+		}
+	}
+
+	$('input[name="exclusive"]').on('change', function(){
+		toggleExclusiveFields();
+	});
+
+	toggleExclusiveFields();
 });
 
 /***************************************** View offers Lists *******************************************/

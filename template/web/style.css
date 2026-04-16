@@ -2094,7 +2094,7 @@ main .carousel.horizontal .caroufredsel_wrapper {
   left: 0;
   text-align: center;
   white-space: nowrap;
-  z-index: 2147483647;
+  z-index: 200000000;
 }
 
 .featherlight * {
@@ -5818,6 +5818,7 @@ a {
     background-position: center;
     transition: transform 0.6s ease;
     z-index: 0;
+  pointer-events: none;
 }
 
 .room-type-card:hover::before {
@@ -5842,6 +5843,12 @@ a {
     object-fit:cover;
 }
 
+.room-type-card .thumb,
+.room-type-card .thumb a {
+  position: relative;
+  z-index: 2;
+}
+
 .room-type-overlay {
     position: absolute;
     inset: 0;
@@ -5849,6 +5856,7 @@ a {
     transition: background 0.4s ease;
     z-index: 1;
     height: 611px;
+  pointer-events: none;
 }
 
 .room-type-card:hover .room-type-overlay {
@@ -7684,18 +7692,40 @@ body.header-hidden .filter-container {
 .fb-preview-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 0;
+    gap: 15px;
+    margin-top: 10px;
     width: 100%;
     justify-content: center;
 }
 
 .fb-preview-thumb {
-    width: 60px;
-    height: 60px;
+    width: 150px;
+    height: 150px;
     border-radius: 4px;
     background-size: cover;
     background-position: center;
     border: 1px solid #ddd;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+} 
+
+.btn-custom {
+  margin: 25px 67px 0 0;
+  float: left;
+  position: relative;
+  background-color: #9c937e;
+  color: white;
+  padding: 8px 25px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-size: 14px;
+  border: none;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.btn-custom:hover {
+  background-color: #ec933d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }

@@ -276,13 +276,40 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                     <div class="form-row">
                         <div class="form-label col-md-2">
                             <label for="">
-                                No. of Rooms :
+                                Size of Room :
                             </label>
                         </div>
                         <div class="form-input col-md-6">
-                            <input placeholder="No. Of Rooms" class="col-md-3 validate[length[0,2]]" type="text"
+                            <input placeholder="Size of Room" class="col-md-3 validate[length[0,2]]" type="text"
                                 name="number_room" id="number_room"
                                 value="<?php echo !empty($subpackageInfo->number_room) ? $subpackageInfo->number_room : ""; ?>">
+                        </div>
+                    </div>
+
+                    <div class="form-row ">
+                        <div class="form-label col-md-2">
+                            <label for="">
+                                Occupation :
+                            </label>
+                        </div>
+                        <div class="form-input col-md-6">
+                            <input placeholder="Occupation" class="col-md-3 validate[length[0,2]]" type="text" name="extra_bed"
+                                id="extra_bed"
+                                value="<?php echo !empty($subpackageInfo->extra_bed) ? $subpackageInfo->extra_bed : ""; ?>">
+                        </div>
+                    </div>
+
+
+                    <div class="form-row">
+                        <div class="form-label col-md-2">
+                            <label for="">
+                                Bed Size :
+                            </label>
+                        </div>
+                        <div class="form-input col-md-6">
+                            <input placeholder="Bed Size" class="col-md-3 validate[length[0,2]]" type="text"
+                                name="bed" id="bed"
+                                value="<?php echo !empty($subpackageInfo->bed) ? $subpackageInfo->bed : ""; ?>">
                         </div>
                     </div>
                     <div class="form-row">
@@ -298,7 +325,7 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                         </div>
                     </div>
 
-                    <div class="form-row">
+                    <div class="form-row hide">
                         <div class="form-label col-md-2">
                             <label for="">
                                 Max People :
@@ -317,43 +344,19 @@ if (isset($_GET['page']) && $_GET['page'] == "package" && isset($_GET['mode']) &
                     </div>
                     <div class="form-row">
                         <div class="form-label col-md-2">
-                            <label>Default Price :</label>
+                            <label>Price :</label>
                         </div>
                         <div class="form-input col-md-10">
                             <div class="row">
                                 <div class="col-md-3 hide rmovprice1">
-                                    <label>1 no. of pax: </label>
                                     <input placeholder="Price" class="validate[groupRequired,length[0,7]]" type="text"
                                         name="onep_price" id="room_price1"
                                         value="<?php echo !empty($subpackageInfo->onep_price) ? $subpackageInfo->onep_price : ''; ?>">
                                 </div>
-                                <div class="col-md-3 hide rmovprice2">
-                                    <label>2 no. of pax: </label>
-                                    <input placeholder="Price" class="validate[groupRequired,length[0,7]]" type="text"
-                                        name="twop_price" id="room_price2"
-                                        value="<?php echo !empty($subpackageInfo->twop_price) ? $subpackageInfo->twop_price : ''; ?>">
-                                </div>
-                                <div class="col-md-3 hide rmovprice3">
-                                    <label>3 no. of pax: </label>
-                                    <input placeholder="Price" class="validate[groupRequired,length[0,7]]" type="text"
-                                        name="threep_price" id="room_price3"
-                                        value="<?php echo !empty($subpackageInfo->threep_price) ? $subpackageInfo->threep_price : ''; ?>">
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-label col-md-2">
-                            <label for="">
-                                Extra Bed :
-                            </label>
-                        </div>
-                        <div class="form-input col-md-6">
-                            <input placeholder="Extra Bed" class="col-md-3 validate[length[0,2]]" type="text" name="extra_bed"
-                                id="extra_bed"
-                                value="<?php echo !empty($subpackageInfo->extra_bed) ? $subpackageInfo->extra_bed : ""; ?>">
-                        </div>
-                    </div>
+
 
                     <!-- Feature Listing -->
                     <?php $svfr = !empty($subpackageInfo->feature) ? $subpackageInfo->feature : '';

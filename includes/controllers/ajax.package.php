@@ -171,7 +171,8 @@
 			$record->content 		= $_REQUEST['content'];			
 			$record->status			= $_REQUEST['status'];
 			$record->number_room    = !empty($_REQUEST['number_room'])?$_REQUEST['number_room']:'';
-			$record->currency 		= !empty($_REQUEST['currency'])?$_REQUEST['currency']:'';			
+			$record->currency 		= !empty($_REQUEST['currency'])?$_REQUEST['currency']:'';	
+			$record->bed 		= !empty($_REQUEST['bed'])?$_REQUEST['bed']:'';		
 			$record->people_qnty 	= !empty($_REQUEST['people_qnty'])?$_REQUEST['people_qnty']:'';
 			$record->onep_price 	= !empty($_REQUEST['onep_price'])?$_REQUEST['onep_price']:'';
 			$record->twop_price 	= !empty($_REQUEST['twop_price'])?$_REQUEST['twop_price']:'';
@@ -213,6 +214,7 @@
 			$record->image2			= !empty($_REQUEST['imageArrayname2'])?$_REQUEST['imageArrayname2']:'';	
 			$record->image 			= !empty($_REQUEST['imageArrayname'])? serialize(array_values(array_filter($_REQUEST['imageArrayname']))):'';
             $record->fb_upload      = !empty($_REQUEST['imageArrayname7']) ? $_REQUEST['imageArrayname7'] : '';
+			$record->bed 		= !empty($_REQUEST['bed'])?$_REQUEST['bed']:'';	
 			$record->feature		= serialize($newArr);
 			$record->content 		= $_REQUEST['content'];
 			$record->status			= $_REQUEST['status'];

@@ -138,7 +138,21 @@ endif;
                 <div class="form-input col-md-6">
                     <input placeholder="Features Title" class="col-md-8 validate[required,length[0,50]]" type="text" name="title" id="title" value="<?php echo !empty($featuresInfo->title)?htmlentities($featuresInfo->title):"";?>">
                 </div>                
-            </div>                                 
+            </div>  
+            
+            
+            <div class="form-row">
+                <div class="form-label col-md-2">
+                    <label for="">
+                        Icon :
+                    </label>
+                </div>                
+                <div class="form-input col-md-6">
+                    <input placeholder="Features Icon" class="col-md-8 validate[length[0,50]]" type="text" name="icon" id="icon" value="<?php echo !empty($featuresInfo->icon)?htmlentities($featuresInfo->icon):"";?>">
+                </div>                
+            </div>  
+
+
             <div class="form-row add-image">
                 <div class="form-label col-md-2">
                     <label for="">

@@ -96,13 +96,22 @@ if (isset($_GET['page']) && $_GET['page'] == "articles" && isset($_GET['mode']) 
     </div>
 
 <?php elseif (isset($_GET['mode']) && $_GET['mode'] == "addEdit"):
+    $articlesInfo = new stdClass();
+    $status = "checked";
+    $unstatus = " ";
+    $external = " ";
+    $internal = "checked";
+
     if (isset($_GET['id']) && !empty($_GET['id'])):
         $articlesId = addslashes($_REQUEST['id']);
-        $articlesInfo = Article::find_by_id($articlesId);
-        $status = ($articlesInfo->status == 1) ? "checked" : " ";
-        $unstatus = ($articlesInfo->status == 0) ? "checked" : " ";
-        $external = ($articlesInfo->linktype == 1) ? "checked" : " ";
-        $internal = ($articlesInfo->linktype == 0) ? "checked" : " ";
+        $articlesData = Article::find_by_id($articlesId);
+        if (is_object($articlesData)) {
+            $articlesInfo = $articlesData;
+            $status = ($articlesInfo->status == 1) ? "checked" : " ";
+            $unstatus = ($articlesInfo->status == 0) ? "checked" : " ";
+            $external = ($articlesInfo->linktype == 1) ? "checked" : " ";
+            $internal = ($articlesInfo->linktype == 0) ? "checked" : " ";
+        }
     endif;
     ?>
     <h3>

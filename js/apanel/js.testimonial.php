@@ -131,6 +131,9 @@ function recordDelete(Re){
 				 showMessage(msg.action,msg.message);
 				 $('#'+Re).remove();
 				 reStructureList(getTableId());
+			   },
+			   error: function(){
+				 showMessage('error','Unable to delete testimonial right now. Please try again.');
 			   }
 			});
 		}else{ Re=null;}

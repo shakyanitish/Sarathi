@@ -4,7 +4,7 @@ class Subpackage extends DatabaseObject
 {
 
     protected static $table_name = "tbl_package_sub";
-    protected static $db_fields = array('id', 'slug', 'title', 'be_room_type', 'sub_title', 'detail', 'facility_title', 'feature', 'image', 'header_image', 'fb_upload', 'image2', 'image3', 'content', 'number_room', 'extra_bed', 'currency', 'discount', 'people_qnty', 'onep_price', 'twop_price', 'threep_price', 'meta_title', 'meta_keywords', 'meta_description', 'status', 'sortorder', 'added_date', 'type');
+    protected static $db_fields = array('id', 'slug', 'title', 'be_room_type', 'sub_title', 'detail', 'facility_title', 'feature', 'image', 'header_image', 'fb_upload', 'image2', 'image3', 'content', 'number_room', 'extra_bed', 'currency', 'discount', 'people_qnty', 'onep_price', 'twop_price', 'threep_price', 'meta_title', 'meta_keywords', 'meta_description', 'status', 'sortorder', 'added_date', 'type','bed');
 
     public $id;
     public $slug;
@@ -34,6 +34,7 @@ class Subpackage extends DatabaseObject
     public $sortorder;
     public $added_date;
     public $type;
+    public $bed;
 
     //Get Facility Ttle
     public static function getFacility()

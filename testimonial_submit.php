@@ -88,7 +88,7 @@ $record->sortorder = Testimonial::find_maximum();
 $db->begin();
 if ($record->save()) {
     $db->commit();
-    echo json_encode(array('action' => 'success', 'message' => 'Thank you! Your feedback has been received.'));
+    echo json_encode(array('action' => 'success', 'message' => 'Thank You for Your Feedback!.We appreciate you taking the time to share your experience with us.'));
 } else {
     $db->rollback();
     echo json_encode(array('action' => 'error', 'message' => 'Unable to submit feedback right now. Please try again later.'));

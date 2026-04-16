@@ -36,10 +36,10 @@ if(defined('HOME_PAGE')) {
                 $detail = mb_strimwidth(strip_tags($subRow->detail),0,120,'...');
 
                 $reshmpkg .= '
-                <div class="room-type-card">
+                <div class="room-type-card" data-article-title="'.$subRow->title.'">
 
                     <div class="thumb">
-                        <a href="'.BASE_URL.'subpackage/'.$subRow->slug.'">
+                         <a href="'.BASE_URL.'subpackage/'.$subRow->slug.'">
                             <img src="'.$img.'" alt="'.$subRow->title.'">
                         </a>
                     </div>
@@ -48,9 +48,11 @@ if(defined('HOME_PAGE')) {
 
                     <div class="room-type-content">
                         <span class="room-type-label">'.$price.'</span>
+                        <a href="'.BASE_URL.'subpackage/'.$subRow->slug.'">
                         <h4>'.$subRow->title.'</h4>
+                        </a>
                         <p>'.$detail.'</p>
-                        <a href="'.BASE_URL.'subpackage/'.$subRow->slug.'" class="header-social">Book Now</a>
+                        <a href="'.BASE_URL.'booking" class="btn-custom">Book Now</a>
                     </div>
 
                 </div>
@@ -127,13 +129,7 @@ if(defined('PACKAGE_PAGE') and isset($_REQUEST['slug'])) {
 						        	<div class="details">
 						            	<h2>'.$subRow->title.'</h2>
 						                '.$subRow->content.'
-										<h5 class="features-title">Features:</h5>
-										<ul class="features-list">
-											<li>King Size Bed</li>
-											<li>Private Mountain View Balcony</li>
-											<li>Separate Sitting Area</li>
-											<li>Premium In-room Amenities</li>
-										</ul>
+
                                         <div class="text-left">
 										<a href="'.BASE_URL.'subpackage/'.$subRow->slug.'" class=" button">View Room</a>
 										</div>
@@ -321,17 +317,17 @@ if(defined('SUBPACKAGE_PAGE') and isset($_REQUEST['slug'])) {
                     <div class="spec-item">
                         <i class="icon ion-ios-expand"></i>
                         <span class="spec-label">Size</span>
-                        <span class="spec-value">350 sq. ft.</span>
+                        <span class="spec-value">'.$subpkgRec->number_room.'</span>
                     </div>
                     <div class="spec-item">
                         <i class="icon ion-ios-people"></i>
                         <span class="spec-label">Occupation</span>
-                        <span class="spec-value">2 Adults / 1 Child</span>
+                        <span class="spec-value">'.$subpkgRec->extra_bed.'</span>
                     </div>
                     <div class="spec-item">
                         <i class="icon ion-bed"></i>
                         <span class="spec-label">Bed</span>
-                        <span class="spec-value">1 King Size Bed</span>
+                        <span class="spec-value">'.$subpkgRec->bed.'</span>
                     </div>
                 </div>    
             </div>
@@ -354,39 +350,20 @@ if(defined('SUBPACKAGE_PAGE') and isset($_REQUEST['slug'])) {
 		if(!empty($subpkgRec->feature)) {
         	$ftRec = unserialize($subpkgRec->feature);
         	if(!empty($ftRec)) {
-                // Icon mapping array
-                $icon_map = [
-                    'airport' => 'ion-plane', 'pickup' => 'ion-plane',
-                    'wifi' => 'ion-wifi', 'wi-fi' => 'ion-wifi', 'internet' => 'ion-wifi',
-                    'tv' => 'ion-ios-monitor-outline', 'led' => 'ion-ios-monitor-outline',
-                    'bed' => 'ion-bed', 'twin' => 'ion-bed', 'double' => 'ion-bed',
-                    'breakfast' => 'ion-ios-pint-outline', 'drink' => 'ion-ios-pint-outline',
-                    'coffee' => 'ion-coffee', 'tea' => 'ion-coffee',
-                    'bathroom' => 'ion-ios-body-outline', 'shower' => 'ion-ios-body-outline', 'toiletries' => 'ion-ios-body-outline',
-                    'balcony' => 'ion-ios-sunny-outline', 'view' => 'ion-ios-sunny-outline',
-                    'bar' => 'ion-ios-pint-outline', 'minibar' => 'ion-ios-pint-outline',
-                    'phone' => 'ion-ios-telephone-outline',
-                    'safe' => 'ion-ios-locked-outline',
-                    'air' => 'ion-ios-snowy', 'ac' => 'ion-ios-snowy',
-                    'parquet' => 'ion-ios-home-outline', 'flooring' => 'ion-ios-home-outline'
-                ];
-
 	        	foreach($ftRec as $k=>$v) {
                     if(!empty($v[1])) {
                         foreach($v[1] as $kk=>$vv) {
                             $sfetname = Features::find_by_id($vv);	
-                            if($sfetname) {
-                                // Detect the best icon
-                                $final_icon = 'ion-ios-checkmark-outline'; // Default
-                                foreach ($icon_map as $keyword => $icon_class) {
-                                    if (stripos($sfetname->title, $keyword) !== false) {
-                                        $final_icon = $icon_class;
-                                        break;
-                                    }
+                            if($sfetname && $sfetname->status == 1) {
+                                $final_icon = !empty($sfetname->icon) ? $sfetname->icon : '';
+                                $img_path = SITE_ROOT . 'images/features/' . $sfetname->image;
+                                $display_icon = '<i class="icon ' . $final_icon . '"></i>';
+                                if (!empty($sfetname->image) && file_exists($img_path)) {
+                                    $display_icon = '<img src="' . IMAGE_PATH . 'features/' . $sfetname->image . '" alt="' . $sfetname->title . '" style="width:24px; height:24px; object-fit:contain; margin-right:10px;">';
                                 }
 
                                 $resubpkgDetail.='<div class="amenity-item">
-                                    <i class="icon '.$final_icon.'"></i>
+                                    '.$display_icon.'
                                     <span class="amenity-label">'.$sfetname->title.'</span>
                                 </div>';
                             }

@@ -112,6 +112,22 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
     <div class="example-box">
         <div class="example-code">
             <form action="" class="col-md-12 center-margin" id="offers_frm">
+
+                <div class="form-row">
+                    <div class="form-label col-md-2">
+                        <label for="">
+                            Type :
+                        </label>
+                    </div>
+                    <div class="form-checkbox-radio col-md-9">
+                        <input type="radio" class="custom-radio" name="exclusive" id="check1" value="1" <?php echo !empty($exclusive) ? $exclusive : "checked"; ?>>
+                        <label for="">Offer</label>
+                        <input type="radio" class="custom-radio" name="exclusive" id="check0" value="0" <?php echo !empty($unexclusive) ? $unexclusive : ""; ?>>
+                        <label for="">Package</label>
+                    </div>
+                </div>
+
+
                 <div class="form-row">
                     <div class="form-label col-md-2">
                         <label for="">
@@ -123,7 +139,7 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row exclusive-package-field">
                     <div class="form-label col-md-2">
                         <label for="">
                             Sub Title :
@@ -163,7 +179,8 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
                     <?php endif; ?>
                     <div class="form-input col-md-10 uploader1 <?php echo !empty($advInfo->image) ? "hide" : ""; ?>">
                         <input type="file" name="background_upload" id="background_upload" class="transparent no-shadow">
-                        <label><small>Image Dimensions (500 px X 500 px)</small></label>
+                        <label class="exclusive-dim-exclusive"><small>Image Dimensions (640 px X 640 px)</small></label>
+                        <label class="exclusive-dim-package"><small>Image Dimensions (800 px X 400 px)</small></label>
                     </div>
                     <!-- Upload user image preview -->
                     <div id="preview_Image"><input type="hidden" name="imageArrayname" value="" class="" /></div>
@@ -207,7 +224,7 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row exclusive-package-field">
                     <div class="form-label col-md-2">
                         <label for="">
                             Short Content :
@@ -235,19 +252,7 @@ if (isset($_GET['page']) && $_GET['page'] == "offers" && isset($_GET['mode']) &&
 
 
                 
-                <div class="form-row">
-                    <div class="form-label col-md-2">
-                        <label for="">
-                            Type :
-                        </label>
-                    </div>
-                    <div class="form-checkbox-radio col-md-9">
-                        <input type="radio" class="custom-radio" name="exclusive" id="check1" value="1" <?php echo !empty($exclusive) ? $exclusive : ""; ?>>
-                        <label for="">Offer</label>
-                        <input type="radio" class="custom-radio" name="exclusive" id="check0" value="0" <?php echo !empty($unexclusive) ? $unexclusive : "checked"; ?>>
-                        <label for="">Package</label>
-                    </div>
-                </div>
+
 
                 <button btn-action='0' type="submit" name="submit" class="btn-submit btn large primary-bg text-transform-upr font-bold font-size-11 radius-all-4" id="btn-submit" title="Save">
                     <span class="button-content">

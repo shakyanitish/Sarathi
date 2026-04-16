@@ -33,10 +33,10 @@ if (isset($_GET['page']) && $_GET['page'] == "testimonial" && isset($_GET['mode'
                 </thead>
 
                 <tbody>
-                    <?php $records = Testimonial::find_by_sql("SELECT * FROM " . $moduleTablename . " ORDER BY sortorder DESC ");
-                    foreach ($records as $record): ?>
+                    <?php $records = Testimonial::find_by_sql("SELECT * FROM " . $moduleTablename . " ORDER BY sortorder DESC");
+                    foreach ($records as $key => $record): ?>
                         <tr id="<?php echo $record->id; ?>">
-                            <td style="display:none;"><?php echo $record->sortorder; ?></td>
+                            <td style="display:none;"><?php echo $key + 1; ?></td>
                             <td><input type="checkbox" class="bulkCheckbox" bulkId="<?php echo $record->id; ?>" /></td>
                             <td>
                                 <div class="col-md-7">
@@ -220,7 +220,7 @@ if (isset($_GET['page']) && $_GET['page'] == "testimonial" && isset($_GET['mode'
                     </div>
                 </div>
 
-                <div class="form-row">
+                <div class="form-row hide">
                     <div class="form-label col-md-2">
                         <label>Display at</label>
                     </div>

@@ -203,14 +203,10 @@ class Testimonial extends DatabaseObject {
 	}
 	
 	
-	//front end function start here
-//	public static function getAllTestimonial($total=6, $offset=0){
-//		global $db;
-//		return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE status=1 ORDER BY sortorder ASC LIMIT {$total} OFFSET {$offset}");
-//	}
+
 	public static function getAllTestimonial(){
 		global $db;
-		return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE status=1 ORDER BY sortorder ASC");
+		return self::find_by_sql("SELECT * FROM ".self::$table_name." WHERE status=1 ORDER BY sortorder DESC");
 	}
 	
 	// GET Testimonial LIST.

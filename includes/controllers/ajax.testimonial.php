@@ -23,7 +23,7 @@
 			$record->via_type	= $_REQUEST['via_type'];
 			$record->type		= $_REQUEST['type'];
 			$record->rating 	= $_REQUEST['rating'];
-			$record->email 	    = $_REQUEST['email'];
+			$record->email 	    = !empty($_REQUEST['email']) ? $_REQUEST['email'] : '';
 
 			$record->sortorder	= Testimonial::find_maximum();
 			$db->begin();
@@ -52,7 +52,7 @@
 			$record->via_type	= $_REQUEST['via_type'];
 			$record->type		= $_REQUEST['type'];
 			$record->rating 	= $_REQUEST['rating'];
-			$record->email 	    = $_REQUEST['email'];
+			$record->email 	    = !empty($_REQUEST['email']) ? $_REQUEST['email'] : '';
 
 
 			$db->begin();
@@ -67,14 +67,15 @@
 		case "delete":
 			$id = $_REQUEST['id'];
 			$record = Testimonial::find_by_id($id);
+			$recordName = ($record && !empty($record->name)) ? $record->name : ('ID ' . $id);
 			$db->begin();
 			$res = $db->query("DELETE FROM tbl_testimonial WHERE id='{$id}'");
 			if($res)$db->commit();else $db->rollback();
 			reOrder("tbl_testimonial", "sortorder");
 			
-			$message  = sprintf($GLOBALS['basic']['deletedSuccess_'], "Testimonial '".$record->title."'");
+			$message  = sprintf($GLOBALS['basic']['deletedSuccess_'], "Testimonial '".$recordName."'");
 			echo json_encode(array("action"=>"success","message"=>$message));					
-			log_action("Testimonial  [".$record->title."]".$GLOBALS['basic']['deletedSuccess'],1,6);
+			log_action("Testimonial  [".$recordName."]".$GLOBALS['basic']['deletedSuccess'],1,6);
 		break;
 		
 		// Module Setting Sections  >> <<
@@ -102,12 +103,16 @@
 			$id = $_REQUEST['idArray'];
 			$allid = explode("|", $id);
 			$return = "0";
+			$res = false;
 			$db->begin();
 			for($i=1; $i<count($allid); $i++){
 				$record = Testimonial::find_by_id($allid[$i]);
-				log_action("Testimonial  [".$record->title."]".$GLOBALS['basic']['deletedSuccess'],1,6);				
+				$recordName = ($record && !empty($record->name)) ? $record->name : ('ID ' . $allid[$i]);
+				log_action("Testimonial  [".$recordName."]".$GLOBALS['basic']['deletedSuccess'],1,6);				
 				$res = $db->query("DELETE FROM tbl_testimonial WHERE id='".$allid[$i]."'");				
-				$return = 1;
+				if($res){
+					$return = 1;
+				}
 			}
 			if($res)$db->commit();else $db->rollback();
 			reOrder("tbl_testimonial", "sortorder");
