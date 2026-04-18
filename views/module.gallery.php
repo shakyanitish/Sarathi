@@ -1,6 +1,11 @@
 <?php 
 $reslgall='';
 
+$hero_gallery = hero::find_by_id(4);
+$jVars['module:gallery-header-title'] = (!empty($hero_gallery)) ? $hero_gallery->title_gr : '';
+$jVars['module:gallery-header-description'] = (!empty($hero_gallery)) ? '<p>'.strip_tags($hero_gallery->content).'</p>' : '';
+
+
 $gallRec = Gallery::getGalleryList(6);
 if($gallRec) {
 	$reslgall.='<!-- Carousel | START -->

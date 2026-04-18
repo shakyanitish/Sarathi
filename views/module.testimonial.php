@@ -5,6 +5,7 @@
 $tstHtitle='';
 
 if(defined('REVIEWS_PAGE')) {
+    $hero_rec = hero::find_by_id(3);
 	$tstHtitle.='<section class="contact-header-section">
             <div class="center">
                 <div class="contact-title-row">
@@ -18,11 +19,10 @@ if(defined('REVIEWS_PAGE')) {
                                 <li>Reviews</li>
                             </ul>
                         </div>
-                        <h2>Get in Touch with Hotel Sarathi</h2>
+                        <h2>' . (!empty($hero_rec) ? $hero_rec->title_gr : '') . '</h2>
                     </div>
                     <div class="contact-description">
-                        <p>Experience the perfect blend of tradition and comfort in the heart of Dhulikhel.Our team is here to assist you with your bookings, enquiries, and any special requests you may have.</p>
-                       
+                    ' . (!empty($hero_rec) ? strip_tags($hero_rec->content) : '') . '
                     </div>
                 </div>
             </div>

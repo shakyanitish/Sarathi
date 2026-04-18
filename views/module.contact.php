@@ -67,6 +67,7 @@ if (defined('CONTACT_PAGE')) {
 
     ';
 
+    $hero_rec = hero::find_by_id(5);
 
     $rescont1 .= '
                 <section class="contact-header-section">
@@ -82,11 +83,11 @@ if (defined('CONTACT_PAGE')) {
                                 <li>Contact Us</li>
                             </ul>
                         </div>
-                        <h2>Get in Touch with Hotel Sarathi</h2>
+                        <h2>' . (!empty($hero_rec) ? $hero_rec->title_gr : '') . '</h2>
                     </div>
                     <div class="contact-description">
                         <p>
-                        '.strip_tags($siteRegulars->breif).'
+                        ' . (!empty($hero_rec) ?strip_tags($hero_rec->content) : '') . '
                         </p>
                        
                     </div>

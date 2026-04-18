@@ -1,4 +1,13 @@
 <?php 
+
+//Header Section
+$hero_offer = hero::find_by_id(6);
+$jVars['module:offer-header-title'] = (!empty($hero_offer)) ? $hero_offer->title_gr : '';
+$jVars['module:offer-header-description'] = (!empty($hero_offer)) ? '<p>'.strip_tags($hero_offer->content).'</p>' : '';
+
+
+//End Here
+
 $resoffr='';
 $resrandoffr='';
 $resoffergrid='';

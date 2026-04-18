@@ -739,17 +739,90 @@ jQuery(document).ready(function () {
 		}
 	});
 
-	
+	//Form Validation
+	// $(document).on('click', '.inquiry-btn, .header-social', function(e) {
+	// 	e.preventDefault();
+
+	// 	var $targetPopup = $('#inquiry-popup');
+
+	// 	if ($.featherlight && $targetPopup.length) {
+	// 		$.featherlight('#inquiry-popup', {
+	// 			variant: 'inquiry-modal-variant',
+
+	// 			afterOpen: function () {
+	// 				var $inquiryForms = $('#frm-inquiry, #frm-inquiry-modal');
+
+	// 				if ($inquiryForms.length) {
+	// 					$inquiryForms.each(function () {
+	// 						var $thisForm = $(this);
+
+	// 						// Prevent double binding
+	// 						if ($thisForm.data('validator')) return;
+
+	// 						$thisForm[0].reset();
+
+	// 						$thisForm.validate({
+	// 							errorElement: 'span',
+	// 							errorClass: 'validate-has-error',
+	// 							rules: {
+	// 								fullname: { required: true },
+	// 								mailaddress: { required: true, email: true },
+	// 								phoneno: { required: true }
+	// 							},
+	// 							messages: {
+	// 								fullname: { required: "Please enter your Full name." },
+	// 								mailaddress: {
+	// 									required: "Please enter your Email Address.",
+	// 									email: "Please enter a VALID email address."
+	// 								},
+	// 								phoneno: { required: "Please enter your Phone Number." }
+	// 							},
+	// 							submitHandler: function (form) {
+
+	// 								var recaptcha = jQuery("#contact_recaptcha").val();
+	// 								if (recaptcha == "") {
+	// 									alert("Please verify reCAPTCHA");
+	// 									return false;
+	// 								}
+
+	// 								var Frmval = $thisForm.serialize();
+	// 								var $btn = $thisForm.find("button[type='submit']");
+	// 								var originalBtnHtml = $btn.html();
+
+	// 								$btn.prop("disabled", true).html('Processing... <i class="icon ion-ios-arrow-right"></i>');
+
+	// 								$.ajax({
+	// 									type: "POST",
+	// 									dataType: "JSON",
+	// 									url: base_url + "enquery_mail.php",
+	// 									data: "action=forcoment&" + Frmval,
+	// 									success: function (data) {
+	// 										$btn.prop("disabled", false).html(originalBtnHtml);
+	// 										$('div#result_msg').html(data.message).css('display', 'block').fadeIn().delay(5000).fadeOut();
+	// 										$thisForm[0].reset();
+
+	// 										if ($.featherlight && $.featherlight.current()) {
+	// 											$.featherlight.current().close();
+	// 										}
+	// 									}
+	// 								});
+
+	// 								return false;
+	// 							}
+	// 						});
+	// 					});
+	// 				}
+	// 			}
+	// 		});
+	// 	}
+
+	// 	return false;
+	// });
+
+
 	// Inquiry form handler for packages-inner
 	$(document).on('click', '.inquiry-btn, .header-social', function(e) {
 		e.preventDefault();
-
-		// Capture offer title from data attribute (empty string on non-offer pages)
-		var offerTitle = $(this).data('offer-title') || '';
-
-		// Capture article title from closest ancestor with data-article-title (articles/home page)
-		// The header-social button is embedded in CKEditor brief, so we read from the parent container
-		var articleTitle = $(this).closest('[data-article-title]').data('article-title') || '';
 
 		var $targetPopup = $('#inquiry-popup');
 
@@ -784,6 +857,7 @@ jQuery(document).ready(function () {
 							if ($thisForm.data('validator')) return;
 
 							$thisForm[0].reset();
+							$thisForm.find("input[name='offer_title']").val(offerTitle);
 
 							$thisForm.validate({
 								errorElement: 'span',
@@ -822,7 +896,7 @@ jQuery(document).ready(function () {
 										type: "POST",
 										dataType: "JSON",
 										url: base_url + "enquery_mail.php",
-										data: "action=forcoment&offer_title=" + encodeURIComponent(offerTitle) + "&article_title=" + encodeURIComponent(articleTitle) + "&" + Frmval,
+										data: "action=forcoment&" + Frmval,
 										success: function (data) {
 											$btn.prop("disabled", false).html(originalBtnHtml);
 											var $resMsg = $lightbox.find('#result_msg');

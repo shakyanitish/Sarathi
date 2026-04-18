@@ -18,7 +18,9 @@ $resocl.='<div id="mobilenav"><i class="icon ion-navicon"></i></div>
     <div id="inquiry-popup" style="display: none;">
         <h2 class="form-title">Direct Inquiry</h2>
         <p class="form-subtitle">We\'ll get back to you shortly with availability and details.</p>
+        <p class="form-subtitle js-inquiry-context" style="display:none;"></p>
         <form action="#" method="POST" id="frm-inquiry-modal" class="inquiry-form">
+            <input type="hidden" name="offer_title" value="">
             <div class="field">
                 <input type="text" name="fullname" placeholder="Your Full Name*">
             </div>
