@@ -823,6 +823,7 @@ jQuery(document).ready(function () {
 	// Inquiry form handler for packages-inner
 	$(document).on('click', '.inquiry-btn, .header-social', function(e) {
 		e.preventDefault();
+		var offerTitle = $(this).data('offer-title') || $.trim($('.contact-tagline h2').first().text()) || '';
 
 		var $targetPopup = $('#inquiry-popup');
 

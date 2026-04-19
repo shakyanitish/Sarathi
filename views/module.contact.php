@@ -22,7 +22,7 @@ if (defined('CONTACT_PAGE')) {
 
         // separator except last item
         if ($index !== array_key_last($telno)) {
-            $tellinked .= ', ';
+            $tellinked .= ',';
         }
     }
     $rescont .= '

@@ -103,7 +103,7 @@ endif;
                 </div>                
                 <div class="form-input col-md-20">
                     <input placeholder="Social Link Icon" class="col-md-4 validate[required,length[0,200]]" type="text" name="icon" id="icon" value="<?php echo !empty($socialInfo->icon)?$socialInfo->icon:"";?>">
-                        <a href="https://fontawesome.com/icons" target="_blank" style="margin-left:10px;">
+                        <a href="https://ionic.io/ionicons/v2/" target="_blank" style="margin-left:10px;">
                             View Icons
                         </a>
                 </div>                

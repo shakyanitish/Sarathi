@@ -149,6 +149,9 @@ endif;
                 </div>                
                 <div class="form-input col-md-6">
                     <input placeholder="Features Icon" class="col-md-8 validate[length[0,50]]" type="text" name="icon" id="icon" value="<?php echo !empty($featuresInfo->icon)?htmlentities($featuresInfo->icon):"";?>">
+                    <a href="https://ionic.io/ionicons/v2/" target="_blank" style="margin-left:10px;">
+                            View Icons
+                    </a>
                 </div>                
             </div>  
 

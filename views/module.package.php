@@ -199,14 +199,15 @@ if(defined('PACKAGE_PAGE') and isset($_REQUEST['slug'])) {
 		    if(!empty($subRec)) {
 		        $label_txt = ($pkgRec->id == 2) ? 'Our Restaurant' : 'Our Event Hall';
 		        
-		        $enquiry_btn = ($pkgRec->id == 2) ? '<a class="button" href="'.BASE_URL.'gallery-list">View Gallery <i class="icon ion-ios-arrow-right"></i></a>' : '<a href="javascript:void(0);" class="button inquiry-btn">Inquiry Now</a>';
-		        
 				$respkgDetail.='<div class="section timeline halls__img">
 					<div class="label fade">'.$label_txt.'</div>
 					<div class="center fade">';
 						foreach($subRec as $subRow) {	        	
 				        	$file_path = SITE_ROOT.'images/subpackage/image/'.$subRow->image2;
 				        	if(file_exists($file_path) and !empty($subRow->image2)) {
+                                $enquiry_btn = ($pkgRec->id == 2)
+                                    ? '<a class="button" href="'.BASE_URL.'gallery-list">View Gallery <i class="icon ion-ios-arrow-right"></i></a>'
+                                    : '<a href="javascript:void(0);" class="button inquiry-btn" data-offer-title="'.htmlspecialchars($subRow->title, ENT_QUOTES, 'UTF-8').'">Inquiry Now</a>';
 								$respkgDetail.='<div class="item fade">
 						        	<div class="thumb">
 						        		<div class="back">
